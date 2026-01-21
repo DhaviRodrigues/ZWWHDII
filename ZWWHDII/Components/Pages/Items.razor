@@ -1,4 +1,5 @@
 ﻿@page "/items"
+@inject NavigationManager Nav
 
 <PageTitle>Zelda WWHD Interactive Inventory</PageTitle>
 
@@ -10,6 +11,16 @@
                 <div class="text-bg no-select" style="grid-column: 5 / 20; grid-row: 9 / 53;">
                     <img src="/resources/inventory/text-backgroud.png" />
                 </div>
+
+
+                <div class="menu-buttons no-select"
+                     style="grid-column: 3 / 13; grid-row: 1 / @(IsItemsPage ? 7 : 6);">
+                    <img src="/resources/general/items-button-big.png" />
+                </div>
+                <div class="menu-buttons no-select " style="grid-column: 14 / 22; grid-row: 1 / 7;">
+                    <img src="/resources/general/map-button.png" />
+                </div>
+
 
                 <div class="items-container no-select" style="grid-column: 38 / 58; grid-row: 20 / 57;">
                     <img src="/resources/inventory/hexagon.png" />
@@ -25,71 +36,109 @@
                 </div>
 
 
-                <div class="items no-select" style="grid-column: 26 / 31; grid-row: 23 / 31;">
+                <div class="items no-select @(SelectedItem == "telescope" ? "selected" : "")" 
+                style="grid-column: 26 / 31; grid-row: 23 / 31;"
+                    @onclick='() => SelectItem("telescope")'>
                     <img src="/resources/inventory/items/telescope/telescope.png" />
                 </div>
-                <div class="items no-select" style="grid-column: 23 / 29; grid-row: 34 / 43;">
+                <div class="items no-select @(SelectedItem == "tingleBottle" ? "selected" : "")" 
+                style="grid-column: 23 / 29; grid-row: 34 / 43;"
+                    @onclick='() => SelectItem("tingleBottle")'>
                     <img src="/resources/inventory/items/Tingle Bottle/tingleBottle.webp" />
                 </div>
-                <div class="items no-select" style="grid-column: 26 / 31; grid-row: 46 / 56;">
+                <div class="items no-select @(SelectedItem == "pictoBox" ? "selected" : "")" 
+                style="grid-column: 26 / 31; grid-row: 46 / 56;"
+                    @onclick='() => SelectItem("pictoBox")'>
                     <img src="/resources/inventory/items/Picto Box/pictoBox.webp" />
                 </div>
 
 
-                <div class="items no-select" style="grid-column: 34 / 39; grid-row: 22 / 32;">
+                <div class="items no-select @(SelectedItem == "spoilsBag" ? "selected" : "")" 
+                style="grid-column: 34 / 39; grid-row: 22 / 32;"
+                    @onclick='() => SelectItem("spoilsBag")'>
                     <img src="/resources/inventory/items/Bag Spoils/spoilsBag.png" />
                 </div>
-                <div class="items no-select" style="grid-column: 31 / 37; grid-row: 34 / 43;">
+                <div class="items no-select @(SelectedItem == "baitBag" ? "selected" : "")" 
+                style="grid-column: 31 / 37; grid-row: 34 / 43;"
+                    @onclick='() => SelectItem("baitBag")'>
                     <img src="/resources/inventory/items/Bag Bait/baitBag.png" />
                 </div>
-                <div class="items no-select" style="grid-column: 34 / 39; grid-row: 46 / 56;">
+                <div class="items no-select @(SelectedItem == "deliveryBag" ? "selected" : "")" 
+                style="grid-column: 34 / 39; grid-row: 46 / 56;"
+                    @onclick='() => SelectItem("deliveryBag")'>
                     <img src="/resources/inventory/items/Bag Delivery/deliveryBag.png" />
                 </div>
 
 
-                <div class="items no-select" style="grid-column: 41 / 45; grid-row: 22 / 32;">
+                <div class="items no-select @(SelectedItem == "grapplingHook" ? "selected" : "")" 
+                style="grid-column: 41 / 45; grid-row: 22 / 32;"
+                    @onclick='() => SelectItem("grapplingHook")'>
                     <img src="/resources/inventory/items/Grappling Hook/grapplingHook.png" />
                 </div>
-                <div class="items no-select" style="grid-column: 46 / 50; grid-row: 22 / 32;">
+                <div class="items no-select @(SelectedItem == "dekuLeaf" ? "selected" : "")" 
+                style="grid-column: 46 / 50; grid-row: 22 / 32;"
+                     @onclick='() => SelectItem("dekuLeaf")'>
                     <img src="/resources/inventory/items/Deku Leaf/dekuLeaf.png" />
                 </div>
-                <div class="items no-select" style="grid-column: 51 / 55; grid-row: 22 / 32;">
+                <div class="items no-select @(SelectedItem == "bomb" ? "selected" : "")" 
+                style="grid-column: 51 / 55; grid-row: 22 / 32;"
+                     @onclick='() => SelectItem("bomb")'>
                     <img src="/resources/inventory/items/Bomb Bags/bomb.webp" />
                 </div>
 
 
-                <div class="items no-select" style="grid-column: 38 / 44; grid-row: 34 / 44;">
+                <div class="items no-select @(SelectedItem == "boomerang" ? "selected" : "")" 
+                style="grid-column: 38 / 44; grid-row: 34 / 44;"
+                     @onclick='() => SelectItem("boomerang")'>
                     <img src="/resources/inventory/items/Boomerang/boomerang.png" />
                 </div>
-                <div class="items no-select" style="grid-column: 44 / 49; grid-row: 34 / 44;">
+                <div class="items no-select @(SelectedItem == "bow" ? "selected" : "")" 
+                style="grid-column: 44 / 49; grid-row: 34 / 44;"
+                     @onclick='() => SelectItem("bow")'>
                     <img src="/resources/inventory/items/Bow/bow.png" />
                 </div>
-                <div class="items no-select" style="grid-column: 49 / 55; grid-row: 34 / 44;">
+                <div class="items no-select @(SelectedItem == "hookshot" ? "selected" : "")" 
+                style="grid-column: 49 / 55; grid-row: 34 / 44;"
+                     @onclick='() => SelectItem("hookshot")'>
                     <img src="/resources/inventory/items/Hookshot/hookshot.png" />
                 </div>
 
 
-                <div class="items no-select" style="grid-column: 41 / 46; grid-row: 46 / 56;">
+                <div class="items no-select @(SelectedItem == "skullHammer" ? "selected" : "")" 
+                style="grid-column: 41 / 46; grid-row: 46 / 56;"
+                     @onclick='() => SelectItem("skullHammer")'>
                     <img src="/resources/inventory/items/Skull Hammer/skullHammer.png" />
                 </div>
-                <div class="items no-select" style="grid-column: 46 / 51; grid-row: 46 / 56;">
+                <div class="items no-select @(SelectedItem == "ironBoots" ? "selected" : "")" 
+                style="grid-column: 46 / 51; grid-row: 46 / 56;"
+                     @onclick='() => SelectItem("ironBoots")'>
                     <img src="/resources/inventory/items/Iron Boots/ironBoots.png" />
                 </div>
-                <div class="items no-select" style="grid-column: 51 / 56; grid-row: 46 / 56;">
+                <div class="items no-select @(SelectedItem == "magicArmor" ? "selected" : "")" 
+                style="grid-column: 51 / 56; grid-row: 46 / 56;"
+                     @onclick='() => SelectItem("magicArmor")'>
                     <img src="/resources/inventory/items/Magic Armor/magicAmor.png" />
                 </div>
 
 
-                <div class="items no-select" style="grid-column: 30 / 35; grid-row: 8 / 17;">
+                <div class="items no-select @(SelectedItem == "bottleEmpty" ? "selected" : "")" 
+                    style="grid-column: 30 / 35; grid-row: 8 / 17;"
+                    @onclick='() => SelectItem("bottleEmpty")'>
                     <img src="/resources/inventory/items/Bottle/bottleEmpty.webp" />
                 </div>
-                <div class="items no-select" style="grid-column: 37 / 42; grid-row: 8 / 17;">
+                <div class="items no-select @(SelectedItem == "bottleWater" ? "selected" : "")" 
+                style="grid-column: 37 / 42; grid-row: 8 / 17;"
+                     @onclick='() => SelectItem("bottleWater")'>
                     <img src="/resources/inventory/items/Bottle/bottleWater.png" />
                 </div>
-                <div class="items no-select" style="grid-column: 43 / 49; grid-row: 8 / 17;">
+                <div class="items no-select @(SelectedItem == "fairy" ? "selected" : "")" 
+                style="grid-column: 43 / 49; grid-row: 8 / 17;"
+                     @onclick='() => SelectItem("fairy")'>
                     <img src="/resources/inventory/items/Bottle/fairy.png" />
                 </div>
-                <div class="items no-select" style="grid-column: 50 / 56; grid-row: 8 / 17;">
+                <div class="items no-select @(SelectedItem == "potionRed" ? "selected" : "")" 
+                style="grid-column: 50 / 56; grid-row: 8 / 17;"
+                     @onclick='() => SelectItem("potionRed")'>
                     <img src="/resources/inventory/items/Bottle/potionRed.png" />
                 </div>
             </div>
@@ -97,3 +146,20 @@
     </div>
 </div>
 <div class="right-arrow no-select"></div>
+
+@code {
+    private string? SelectedItem;
+
+    private void SelectItem(string itemName)
+    {
+        SelectedItem = itemName;
+    }
+
+    private bool IsItemsPage => Nav.Uri.ToLower().Contains("items");
+    private int ButtonSize = 6;
+
+    private void ChangeButtonSize(int size)
+    {
+        ButtonSize = size;
+    }
+}
