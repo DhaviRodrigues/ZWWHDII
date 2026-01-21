@@ -1,0 +1,22 @@
+﻿@page "/"
+@inject NavigationManager NavManager
+
+<div class="page-content @transition">
+    <div class="title-screen">
+        <div class="title-logo">
+            <img src="resources/titlescreen/logo.png" class="logo no-select">
+        </div>
+        <div class="down-arrow no-select" @onclick="PushTransition"></div>
+    </div>
+</div>
+
+@code {
+    private string transition = "";
+
+    private async Task PushTransition()
+    {
+        transition = "push-up";
+        await Task.Delay(1000);
+        NavManager.NavigateTo("/items");
+    }
+}
