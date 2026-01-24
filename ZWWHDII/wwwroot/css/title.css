@@ -92,13 +92,6 @@ body {
     }
 }
 
-h1 {
-    font-family: 'RocknRollOne', cursive;
-    color: white;
-    -webkit-text-stroke: 10px black;
-    paint-order: stroke fill;
-    font-size: 40px; 
-}
 
 .down-arrow {
     background-image: url('/resources/general/arrow.png');

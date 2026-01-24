@@ -1,153 +1,179 @@
 ﻿@page "/items"
-@inject NavigationManager Nav
+@inject NavigationManager NavManager
 
 <PageTitle>Zelda WWHD Interactive Inventory</PageTitle>
 
-<div class="items-background">
-    <div class="items-main">
-        <div class="inventory-limit">
-            <img src="/resources/inventory/inventory-main.png" class="inventory-base" />
-            <div class="items-grid">
-                <div class="text-bg no-select" style="grid-column: 5 / 20; grid-row: 9 / 53;">
-                    <img src="/resources/inventory/text-backgroud.png" />
-                </div>
+<div class="items-page-entry">
+    <div class="items-background">
+        <div class="items-main no-">
+            <div class="inventory-limit">
+                <img src="/resources/inventory/inventory-main.png" class="inventory-base" />
+                <div class="items-grid">
+                    <div class="text-bg no-select" style="grid-column: 5 / 20; grid-row: 9 / 53;">
+                        <img src="/resources/inventory/text-backgroud.png" class="bg-image"/>
+
+                        <div class="text-content" style="grid-column: 6 / 19; grid-row: 10 / 52;">
+                            @if (SelectedItem != null && ItemData.ContainsKey(SelectedItem))
+                            {
+                                <h1>@ItemData[SelectedItem].Title</h1>
+                                <p>@ItemData[SelectedItem].Description</p>
+                                <footer>Text from <br/><a href="https://www.zeldadungeon.net" target="_blank">zeldadungeon.net</a></footer>
+                            }
+
+                            else
+                            {
+                                <h1>Select an item to see details.</h1>
+                            }
+                        </div>
+                    </div>
 
 
-                <div class="menu-buttons no-select"
-                     style="grid-column: 3 / 13; grid-row: 1 / @(IsItemsPage ? 7 : 6);">
-                    <img src="/resources/general/items-button-big.png" />
-                </div>
-                <div class="menu-buttons no-select " style="grid-column: 14 / 22; grid-row: 1 / 7;">
-                    <img src="/resources/general/map-button.png" />
-                </div>
+                    <div class="items-button no-select" style="grid-column: 3 / 13; grid-row: 1 / @(IsItemsPage ? 7 : 6);">
+                        <img src="/resources/general/items-button-big.png" />
+                    </div>
+
+                    <div class="map-button no-select " style="grid-column: 14 / 22; grid-row: 1 / 7;">
+                        <img src="/resources/general/map-button.png" />
+                    </div>
 
 
-                <div class="items-container no-select" style="grid-column: 38 / 58; grid-row: 20 / 57;">
-                    <img src="/resources/inventory/hexagon.png" />
-                </div>
-                <div class="items-container no-select" style="grid-column: 29 / 43; grid-row: 20 / 57;">
-                    <img src="/resources/inventory/bags.png" />
-                </div>
-                <div class="items-container no-select " style="grid-column: 21 / 35; grid-row: 20 / 57;">
-                    <img src="/resources/inventory/others.png" />
-                </div>
-                <div class="items-container no-select " style="grid-column: 27 / 58; grid-row: 6 / 19;">
-                    <img src="/resources/inventory/bottles.png" />
-                </div>
+                    <div class="items-container no-select" style="grid-column: 38 / 58; grid-row: 20 / 57;">
+                        <img src="/resources/inventory/hexagon.png" />
+                    </div>
+                    <div class="items-container no-select" style="grid-column: 29 / 43; grid-row: 20 / 57;">
+                        <img src="/resources/inventory/bags.png" />
+                    </div>
+                    <div class="items-container no-select " style="grid-column: 21 / 35; grid-row: 20 / 57;">
+                        <img src="/resources/inventory/others.png" />
+                    </div>
+                    <div class="items-container no-select " style="grid-column: 27 / 58; grid-row: 6 / 19;">
+                        <img src="/resources/inventory/bottles.png" />
+                    </div>
 
 
-                <div class="items no-select @(SelectedItem == "telescope" ? "selected" : "")" 
-                style="grid-column: 26 / 31; grid-row: 23 / 31;"
-                    @onclick='() => SelectItem("telescope")'>
-                    <img src="/resources/inventory/items/telescope/telescope.png" />
-                </div>
-                <div class="items no-select @(SelectedItem == "tingleBottle" ? "selected" : "")" 
-                style="grid-column: 23 / 29; grid-row: 34 / 43;"
-                    @onclick='() => SelectItem("tingleBottle")'>
-                    <img src="/resources/inventory/items/Tingle Bottle/tingleBottle.webp" />
-                </div>
-                <div class="items no-select @(SelectedItem == "pictoBox" ? "selected" : "")" 
-                style="grid-column: 26 / 31; grid-row: 46 / 56;"
-                    @onclick='() => SelectItem("pictoBox")'>
-                    <img src="/resources/inventory/items/Picto Box/pictoBox.webp" />
-                </div>
+                    <div class="items no-select @(SelectedItem == "telescope" ? "selected" : "")" 
+                    style="grid-column: 26 / 31; grid-row: 23 / 31;"
+                        @onclick='() => SelectItem("telescope")'>
+                        <img src="/resources/inventory/items/telescope/telescope.png" />
+                    </div>
+                    <div class="items no-select @(SelectedItem == "tingleBottle" ? "selected" : "")" 
+                    style="grid-column: 23 / 29; grid-row: 34 / 43;"
+                        @onclick='() => SelectItem("tingleBottle")'>
+                        <img src="/resources/inventory/items/Tingle Bottle/tingleBottle.webp" />
+                    </div>
+                    <div class="items no-select @(SelectedItem == "pictoBox" ? "selected" : "")" 
+                    style="grid-column: 26 / 31; grid-row: 46 / 56;"
+                        @onclick='() => SelectItem("pictoBox")'>
+                        <img src="/resources/inventory/items/Picto Box/pictoBox.webp" />
+                    </div>
 
 
-                <div class="items no-select @(SelectedItem == "spoilsBag" ? "selected" : "")" 
-                style="grid-column: 34 / 39; grid-row: 22 / 32;"
-                    @onclick='() => SelectItem("spoilsBag")'>
-                    <img src="/resources/inventory/items/Bag Spoils/spoilsBag.png" />
-                </div>
-                <div class="items no-select @(SelectedItem == "baitBag" ? "selected" : "")" 
-                style="grid-column: 31 / 37; grid-row: 34 / 43;"
-                    @onclick='() => SelectItem("baitBag")'>
-                    <img src="/resources/inventory/items/Bag Bait/baitBag.png" />
-                </div>
-                <div class="items no-select @(SelectedItem == "deliveryBag" ? "selected" : "")" 
-                style="grid-column: 34 / 39; grid-row: 46 / 56;"
-                    @onclick='() => SelectItem("deliveryBag")'>
-                    <img src="/resources/inventory/items/Bag Delivery/deliveryBag.png" />
-                </div>
+                    <div class="items no-select @(SelectedItem == "spoilsBag" ? "selected" : "")" 
+                    style="grid-column: 34 / 39; grid-row: 22 / 32;"
+                        @onclick='() => SelectItem("spoilsBag")'>
+                        <img src="/resources/inventory/items/Bag Spoils/spoilsBag.png" />
+                    </div>
+                    <div class="items no-select @(SelectedItem == "baitBag" ? "selected" : "")" 
+                    style="grid-column: 31 / 37; grid-row: 34 / 43;"
+                        @onclick='() => SelectItem("baitBag")'>
+                        <img src="/resources/inventory/items/Bag Bait/baitBag.png" />
+                    </div>
+                    <div class="items no-select @(SelectedItem == "deliveryBag" ? "selected" : "")" 
+                    style="grid-column: 34 / 39; grid-row: 46 / 56;"
+                        @onclick='() => SelectItem("deliveryBag")'>
+                        <img src="/resources/inventory/items/Bag Delivery/deliveryBag.png" />
+                    </div>
 
 
-                <div class="items no-select @(SelectedItem == "grapplingHook" ? "selected" : "")" 
-                style="grid-column: 41 / 45; grid-row: 22 / 32;"
-                    @onclick='() => SelectItem("grapplingHook")'>
-                    <img src="/resources/inventory/items/Grappling Hook/grapplingHook.png" />
-                </div>
-                <div class="items no-select @(SelectedItem == "dekuLeaf" ? "selected" : "")" 
-                style="grid-column: 46 / 50; grid-row: 22 / 32;"
-                     @onclick='() => SelectItem("dekuLeaf")'>
-                    <img src="/resources/inventory/items/Deku Leaf/dekuLeaf.png" />
-                </div>
-                <div class="items no-select @(SelectedItem == "bomb" ? "selected" : "")" 
-                style="grid-column: 51 / 55; grid-row: 22 / 32;"
-                     @onclick='() => SelectItem("bomb")'>
-                    <img src="/resources/inventory/items/Bomb Bags/bomb.webp" />
-                </div>
+                    <div class="items no-select @(SelectedItem == "grapplingHook" ? "selected" : "")" 
+                    style="grid-column: 41 / 45; grid-row: 22 / 32;"
+                        @onclick='() => SelectItem("grapplingHook")'>
+                        <img src="/resources/inventory/items/Grappling Hook/grapplingHook.png" />
+                    </div>
+                    <div class="items no-select @(SelectedItem == "dekuLeaf" ? "selected" : "")" 
+                    style="grid-column: 46 / 50; grid-row: 22 / 32;"
+                         @onclick='() => SelectItem("dekuLeaf")'>
+                        <img src="/resources/inventory/items/Deku Leaf/dekuLeaf.png" />
+                    </div>
+                    <div class="items no-select @(SelectedItem == "bomb" ? "selected" : "")" 
+                    style="grid-column: 51 / 55; grid-row: 22 / 32;"
+                         @onclick='() => SelectItem("bomb")'>
+                        <img src="/resources/inventory/items/Bomb Bags/bomb.webp" />
+                    </div>
 
 
-                <div class="items no-select @(SelectedItem == "boomerang" ? "selected" : "")" 
-                style="grid-column: 38 / 44; grid-row: 34 / 44;"
-                     @onclick='() => SelectItem("boomerang")'>
-                    <img src="/resources/inventory/items/Boomerang/boomerang.png" />
-                </div>
-                <div class="items no-select @(SelectedItem == "bow" ? "selected" : "")" 
-                style="grid-column: 44 / 49; grid-row: 34 / 44;"
-                     @onclick='() => SelectItem("bow")'>
-                    <img src="/resources/inventory/items/Bow/bow.png" />
-                </div>
-                <div class="items no-select @(SelectedItem == "hookshot" ? "selected" : "")" 
-                style="grid-column: 49 / 55; grid-row: 34 / 44;"
-                     @onclick='() => SelectItem("hookshot")'>
-                    <img src="/resources/inventory/items/Hookshot/hookshot.png" />
-                </div>
+                    <div class="items no-select @(SelectedItem == "boomerang" ? "selected" : "")" 
+                    style="grid-column: 38 / 44; grid-row: 34 / 44;"
+                         @onclick='() => SelectItem("boomerang")'>
+                        <img src="/resources/inventory/items/Boomerang/boomerang.png" />
+                    </div>
+                    <div class="items no-select @(SelectedItem == "bow" ? "selected" : "")" 
+                    style="grid-column: 44 / 49; grid-row: 34 / 44;"
+                         @onclick='() => SelectItem("bow")'>
+                        <img src="/resources/inventory/items/Bow/bow.png" />
+                    </div>
+                    <div class="items no-select @(SelectedItem == "hookshot" ? "selected" : "")" 
+                    style="grid-column: 49 / 55; grid-row: 34 / 44;"
+                         @onclick='() => SelectItem("hookshot")'>
+                        <img src="/resources/inventory/items/Hookshot/hookshot.png" />
+                    </div>
 
 
-                <div class="items no-select @(SelectedItem == "skullHammer" ? "selected" : "")" 
-                style="grid-column: 41 / 46; grid-row: 46 / 56;"
-                     @onclick='() => SelectItem("skullHammer")'>
-                    <img src="/resources/inventory/items/Skull Hammer/skullHammer.png" />
-                </div>
-                <div class="items no-select @(SelectedItem == "ironBoots" ? "selected" : "")" 
-                style="grid-column: 46 / 51; grid-row: 46 / 56;"
-                     @onclick='() => SelectItem("ironBoots")'>
-                    <img src="/resources/inventory/items/Iron Boots/ironBoots.png" />
-                </div>
-                <div class="items no-select @(SelectedItem == "magicArmor" ? "selected" : "")" 
-                style="grid-column: 51 / 56; grid-row: 46 / 56;"
-                     @onclick='() => SelectItem("magicArmor")'>
-                    <img src="/resources/inventory/items/Magic Armor/magicAmor.png" />
-                </div>
+                    <div class="items no-select @(SelectedItem == "skullHammer" ? "selected" : "")" 
+                    style="grid-column: 41 / 46; grid-row: 46 / 56;"
+                         @onclick='() => SelectItem("skullHammer")'>
+                        <img src="/resources/inventory/items/Skull Hammer/skullHammer.png" />
+                    </div>
+                    <div class="items no-select @(SelectedItem == "ironBoots" ? "selected" : "")" 
+                    style="grid-column: 46 / 51; grid-row: 46 / 56;"
+                         @onclick='() => SelectItem("ironBoots")'>
+                        <img src="/resources/inventory/items/Iron Boots/ironBoots.png" />
+                    </div>
+                    <div class="items no-select @(SelectedItem == "magicArmor" ? "selected" : "")" 
+                    style="grid-column: 51 / 56; grid-row: 46 / 56;"
+                         @onclick='() => SelectItem("magicArmor")'>
+                        <img src="/resources/inventory/items/Magic Armor/magicAmor.png" />
+                    </div>
 
 
-                <div class="items no-select @(SelectedItem == "bottleEmpty" ? "selected" : "")" 
-                    style="grid-column: 30 / 35; grid-row: 8 / 17;"
-                    @onclick='() => SelectItem("bottleEmpty")'>
-                    <img src="/resources/inventory/items/Bottle/bottleEmpty.webp" />
-                </div>
-                <div class="items no-select @(SelectedItem == "bottleWater" ? "selected" : "")" 
-                style="grid-column: 37 / 42; grid-row: 8 / 17;"
-                     @onclick='() => SelectItem("bottleWater")'>
-                    <img src="/resources/inventory/items/Bottle/bottleWater.png" />
-                </div>
-                <div class="items no-select @(SelectedItem == "fairy" ? "selected" : "")" 
-                style="grid-column: 43 / 49; grid-row: 8 / 17;"
-                     @onclick='() => SelectItem("fairy")'>
-                    <img src="/resources/inventory/items/Bottle/fairy.png" />
-                </div>
-                <div class="items no-select @(SelectedItem == "potionRed" ? "selected" : "")" 
-                style="grid-column: 50 / 56; grid-row: 8 / 17;"
-                     @onclick='() => SelectItem("potionRed")'>
-                    <img src="/resources/inventory/items/Bottle/potionRed.png" />
+                    <div class="items no-select @(SelectedItem == "bottleEmpty" ? "selected" : "")" 
+                        style="grid-column: 30 / 35; grid-row: 8 / 17;"
+                        @onclick='() => SelectItem("bottleEmpty")'>
+                        <img src="/resources/inventory/items/Bottle/bottleEmpty.webp" />
+                    </div>
+                    <div class="items no-select @(SelectedItem == "bottleWater" ? "selected" : "")" 
+                    style="grid-column: 37 / 42; grid-row: 8 / 17;"
+                         @onclick='() => SelectItem("bottleWater")'>
+                        <img src="/resources/inventory/items/Bottle/bottleWater.png" />
+                    </div>
+                    <div class="items no-select @(SelectedItem == "fairy" ? "selected" : "")" 
+                    style="grid-column: 43 / 49; grid-row: 8 / 17;"
+                         @onclick='() => SelectItem("fairy")'>
+                        <img src="/resources/inventory/items/Bottle/fairy.png" />
+                    </div>
+                    <div class="items no-select @(SelectedItem == "potionRed" ? "selected" : "")" 
+                    style="grid-column: 50 / 56; grid-row: 8 / 17;"
+                         @onclick='() => SelectItem("potionRed")'>
+                        <img src="/resources/inventory/items/Bottle/potionRed.png" />
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>
-<div class="right-arrow no-select"></div>
+<div class="right-arrow no-select arrow-page-entry" @onclick="PushTransition"></div>
 
 @code {
+
+    private string transition = "";
+
+    private async Task PushTransition()
+    {
+        transition = "push-up";
+        await Task.Delay(1000);
+        NavManager.NavigateTo("/key-items");
+    }
+
     private string? SelectedItem;
 
     private void SelectItem(string itemName)
@@ -155,11 +181,104 @@
         SelectedItem = itemName;
     }
 
-    private bool IsItemsPage => Nav.Uri.ToLower().Contains("items");
+    private bool IsItemsPage => NavManager.Uri.ToLower().Contains("items");
     private int ButtonSize = 6;
 
     private void ChangeButtonSize(int size)
     {
         ButtonSize = size;
     }
+
+    private class ItemInfo
+    {
+        public string Title = "";
+        public string Description = "";
+    }
+
+    private Dictionary<string, ItemInfo> ItemData = new() {
+        { "telescope", new ItemInfo { Title = "Telescope", Description = @"The seagull-marked telescope is the most prized possession of Link's sister, Aryll. She loans it to Link as a birthday gift. Link immediately uses the Telescope to see the postman, Quill, acting strange while delivering mail. This leads to the Helmaroc King appearing at Outset Island. After a series of events, Aryll is then kidnapped and Link holds on to it for the remainder of the game. 
+
+Identifying Quill with the Telescope at the start of the game is the only required usage of the item. However, Link is able to use it throughout to see various things in the distance. It is useful on the Great Sea to identify things that are too far in the distance, such as seagulls. These usually indicate the presence of a Big Octo." } },
+        { "tingleBottle", new ItemInfo { Title = "Tingle Bottle", Description = @"Link receives the first Tingle Bottle from Tingle, after rescuing him from the Town Jail on Windfall Island.
+
+The Tingle Bottle was used to send messages to people via Miiverse. Link can write a message, and then throw the bottle out to sea, at which point it is sent to players around the world. This also worked the other way, as Link could receive messages from other players. Tingle Bottles from other players could be found floating in the ocean or on beaches. Pictographs could be attached to the bottles sent out and received as well, and any that came from other players could be saved to Link's Pictograph Box." } },
+        { "pictoBox", new ItemInfo { Title = "Picto Box", Description = "Link can find this device in Tingle's jail cell, located on Windfall Island. It can be obtained by entering his cell, moving a large box, and solving a maze. Link must successfully make it through the maze without falling into any traps whatsoever. The Picto Box is preserved in a treasure chest at the end of the maze. With the standard Picto Box, pictographs appear in black and white once taken. Allow Link to store up to 12 photos" } },
+
+        { "spoilsBag", new ItemInfo { Title = "Spoils Bag", Description = @"The Spoils Bag is acquired by completing the first level of Niko's game aboard the Pirate Ship. It allows Link to hold all the various spoils he finds when he defeats enemies. It can hold eight different kinds of spoils.
+        
+There are eight types of Treasure that Link can acquire and keep within his Spoils Bag.
+
+• Blue Chu Jelly
+• Boko Baba Seed
+• Golden Feather
+• Green Chu Jelly
+• Knight's Crest
+• Joy Pendant
+• Red Chu Jelly
+• Skull Necklace" } },
+
+        // bag items
+
+        { "baitBag", new ItemInfo { Title = "Bait Bag", Description = @"The Bait Bag can be bought from Beedle at his shop for 20 Rupees. The bag has a photo of a pig's nose on it. It can hold up to eight slots of bait, which can consist of All-Purpose Bait or Hyoi Pears. Without it, Beedle will not let Link buy bait.
+
+Beedel's Shop Ship can be found at various locations through the Great Sea, with it first being encountered at the start of the game, on Outset Island. It appears at many of the early locations, including Windfall Island, Dragon Roost Island, and the Forest Haven, to encourage players to purcahse the Bait Bag early on." } },
+
+        // bag items
+
+        { "deliveryBag", new ItemInfo { Title = "Delivery Bag", Description = "The Delivery Bag is given to Link by Quill on Dragon Roost Island after he gets into a conversation with him and the Rito Chieftain. It can hold eight items and letters, is used more commonly to carry the Decorations during the Island Trading Sequence. After the Rito Chieftain leaves, Quill will give Link the Delivery Bag and ask him to seek out Medli. It is first used after speaking with Medli, who will give Link Father's Letter, which is a letter that the Rito Chieftain wrote and Medli asks Link to deliver it to Prince Komali" } },
+
+        // bag items
+
+        { "grapplingHook", new ItemInfo { Title = "Grappling Hook", Description = @"The Grappling Hook is given to Link by Medli in Dragon Roost Cavern after Link rescues her from some Bokoblins and Moblins. The Grappling Hook is a multipurpose item. Link can throw the Grappling Hook around it and swing on to a platform. It can also be used to steal loot from enemies before they are defeated. If Link is on his boat, he can use it as part of a crane to recover treasure in the ocean." } },
+        { "dekuLeaf", new ItemInfo { Title = "Deku Leaf", Description = @"The Deku Leaf's primary use is that of flotation, allowing Link to fly from platform to platform with ease. Link receives this item from the Great Deku Tree, as Link requires this item if he were to try to save Makar from the Forbidden Woods. Once Link uses it, he can jump off the platform he's standing on, and Link will float to another spot. The Magic Meter comes with it. When this runs out, one will no longer be able to use the Deku Leaf, and will simply be left with a broken leaf. One can cut down some grass to get some more magic.
+
+The Deku Leaf has one more use. Link can use it to create a gust of air when standing still. He can use this gust to move certain objects, allowing Link to access new places" } },
+        { "bomb", new ItemInfo { Title = "Bombs", Description = @"Link obtains Bombs by completing Niko's second Rope swinging challenges in Tetra's Ship at Windfall Island. Initially, Bombs are far too expensive for Link to afford, with 10 Bombs costing 10,000 Rupees at the Bomb Shop on the southern part of Windfall Island. However, after Tetra and her crew come and steal his Bombs, he lowers the prices.
+
+At first, Link can carry 30 Bombs, but he can upgrade his Bomb carrying capacity to 60 and then 99 by visiting the Great Fairies at Eastern Fairy Island and Southern Fairy Island." } },
+
+        { "boomerang", new ItemInfo { Title = "Boomerang", Description = @"Boomerang works by returning to Link after he has thrown them every time, making them very versatile. They can be used in many different ways, such as picking up items, or stun and even defeat enemies, or to hit distant switches, and much more.
+
+The Boomerang in The Wind Waker is the first one to be able to lock on to multiple targets at once; five to be exact. Link finds it in the Forbidden Woods, after defeating the mini-boss Mothula.." } },
+        { "bow", new ItemInfo { Title = "Hero's Bow", Description = @"The Hero's Bow is the dungeon item of the Tower of the Gods. It can be used to snipe faraway switches, and some enemies, such as Beamos and Gohdan, can only be defeated using it. The Hero's Bow is also required for a shooting minigame with the Fishman, provided Link had first filled in a portion of the Sea Chart.
+        
+Link acquires Fire & Ice Arrows by playing the Ballad of Gales and warping to Mother & Child Isles after rescuing Aryll from Forsaken Fortress. The Fire & Ice Arrows are required to enter Fire Mountain and Ice Ring Isle to retrieve the Power Bracelets and Iron Boots, respectively.
+
+The Light Arrows are awarded to Link after he completes the Maze in Ganon's Tower. After exiting the Maze, Link will battle with Phantom Ganon one last time and must shoot him with a Light Arrow to defeat him for good. The Light Arrows are also the only item that can harm Puppet Ganon, and Zelda will use them to stun Ganondorf in the final battle, allowing Link to get a few hits in and eventually the final blow." } },
+        { "hookshot", new ItemInfo { Title = "Hookshot", Description = "The Hookshot is the dungeon item for the Wind Temple. Link acquires the Hookshot after defeating the Red Wizzrobe. The Hookshot can be used to latch onto certain objects, including wooden beams, trees and targets. When Link is wearing the Iron Boots, he can use the Hookshot to pull down statues that have a target on them for the Hookshot to latch onto. It is also required to defeat the boss of the Wind Temple, Molgera." } },
+
+        { "skullHammer", new ItemInfo { Title = "Skull Hammer", Description = @"The Skull Hammer is a large hammer acquired after defeating Phantom Ganon in the Forsaken Fortress. The primary use is to pound pegs located throughout the Great Sea or to activate switches that Link's weight will not normally activate. 
+        
+        During the second time in the Forsaken Fortress, once Link has acquired the Master Sword, it is a necessary item needed to defeat the Helmaroc King at the top of the Forsaken Fortress. The Skull Hammer is required to access the Fairy Fountains on Thorned Fairy Island and Western Fairy Island." } },
+        { "ironBoots", new ItemInfo { Title = "Iron Boots", Description = @"The Iron Boots are found in a cave on Ice Ring Isle and are not accessible until Link receives the Fire Arrows and Ice Arrows from the Queen of Fairies on Mother and Child Isles after learning the Ballad of Gales and warping to them. 
+        
+        The Iron Boots allow Link to not be affected by wind when equipped, therefore making them essential for the Wind Temple. They also allow Link to activate springboards first by wearing the boots and then taking them off. Larger statues may also be pulled over when the Iron Boots are paired with the Hookshot." } },
+        { "magicArmor", new ItemInfo { Title = "Magic Armor", Description = "The Magic Armor is an item given to you by Zunari as a reward after completing the Island Trading Sequence. This item creates a magical barrier around Link that protects him from damage. While active, the armor drains Link's magic meter. Once Link's magic is depleted, the Magic Armor stops working. The Magic Armor can also be used while sailing to protect from attacks during battles at sea." } },
+
+        { "bottleEmpty", new ItemInfo { Title = "Empty Bottle", Description = @"Empty bottles are used to store all sorts of things. Link can use bottles for storing Water, Fairies, Potions, or even some of Grandma's delicious Elixir Soup. There are a total of four bottles that can be found in The Wind Waker.
+        
+Bottle #1
+Location: Dragon Roost Island
+
+After Link reaches Dragon Roost Island (F2) for the first time, head into the main living area as the storyline intends. Speak with the Rito inside and they will tell Link to meet a girl named Medli. Speak to her in the first upper room, and she will ask Link for help. Head back down the ramp and enter outside into a large circular area that is covered in dust particles. Continue to the left and down into the pit to find Medli once again. Speak with her, and she will ask Link to help her get onto the ledge on the far side of the area. Link can then pick her up and walk onto a higher rock nearby. When the wind faces the far side, Link can throw her with A and she will land there. Medli will talk to Link once more, and will give him the first Bottle in the process. This is the only bottle that must be obtained in the game.
+
+Bottle #2
+Location: Bomb Island
+
+To obtain second Bottle, begin by heading over to Bomb Island (F5). Link will need to find Old Man Ho Ho, and look where he is looking with his telescope. Upon doing this, Link will see a Submarine in the distance. Link can then sail to the submarine and defeat the enemies inside to receive the second Bottle.
+
+Bottle #3
+Location: Rock Spire Isle
+
+After obtaining the ability to sail anywhere on the Great Sea, head over to Rock Spire Isle (B3). Beedle operates a special type of ship that sails around this isle known as the Rock Spire Shop Ship. It sells special items that aren't available elsewhere, including the third Bottle. The Bottle costs 500 rupees to purchase.
+
+Bottle #4
+Location: Windfall Island
+
+After defeating the Helmaroc King at the Forsaken Fortress, head to Windfall Island (D2) at night. There is a poor girl named Mila and she will tell Link to go away. Head to the stairs nearby and she'll run away. Follow her, but don't get too close or she will see Link when she turns around. When she gets to Zunari's safe, talk to her. Select the first option for every question asked, and she will give Link the fourth and final Bottle." } },
+        { "bottleWater", new ItemInfo { Title = "Bottled Water", Description = "Bottled Water can be used to make some withered plants grow. It is particularly useful when trying to access Dragon Roost Cavern. All that Link needs to do to collect some is to swipe an empty bottle near a water source." } },
+        { "fairy", new ItemInfo { Title = "Fairy", Description = "Fairies can be captured in bottles to save Link when he dies in The Wind Waker. There are five Fairy Islands around the Great Sea, where both Fairies and Great Fairies reside. The Queen of Fairies also makes an appearance at Mother and Child Isles, where she gives Link the Fire and Ice arrows." } },
+        { "potionRed", new ItemInfo { Title = "Red Potion", Description = "Red Potions can be held in bottles until ready to use. When used, they restore all of Link's hearts. Red Potions can be purchased from Doc Bandam at the Chu Jelly Juice Shop on Windfall Island for 20 Rupees. If Link brings 5 Red Chu Jellies to Doc Bandam, he will fill Link's bottle with Red Potion for free." } },
+    };
 }
+

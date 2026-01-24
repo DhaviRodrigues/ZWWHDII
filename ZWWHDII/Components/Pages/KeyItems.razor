@@ -1,0 +1,77 @@
+﻿@page "/key-items"
+@inject NavigationManager NavManager
+
+<PageTitle>Zelda WWHD Interactive Inventory</PageTitle>
+
+<div class="items-background">
+    <div class="items-main no-select">
+        <div class="inventory-limit">
+            <img src="/resources/inventory/inventory-main.png" class="inventory-base" />
+            <div class="items-grid">
+                <div class="text-bg no-select" style="grid-column: 5 / 20; grid-row: 9 / 53;">
+                    <img src="/resources/inventory/text-backgroud.png" class="bg-image"/>
+
+                    <div class="text-content" style="grid-column: 6 / 19; grid-row: 10 / 52;">
+                        @if (SelectedItem != null && ItemData.ContainsKey(SelectedItem))
+                        {
+                            <h1>@ItemData[SelectedItem].Title</h1>
+                            <p>@ItemData[SelectedItem].Description</p>
+                            <footer>Text from <br/><a href="https://www.zeldadungeon.net" target="_blank">zeldadungeon.net</a></footer>
+                        }
+                        else
+                        {
+                            <h1>Select an item to see details.</h1>
+                        }
+                    </div>
+                </div>
+
+                <div class="items-button no-select" style="grid-column: 3 / 13; grid-row: 1 / @(IsItemsPage ? 7 : 6);">
+                    <img src="/resources/general/items-button-big.png" />
+                </div>
+
+                <div class="map-button no-select " style="grid-column: 14 / 22; grid-row: 1 / 7;">
+                    <img src="/resources/general/map-button.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="left-arrow no-select" @onclick="PushTransition"></div>
+
+@code {
+
+    private string transition = "";
+
+    private async Task PushTransition()
+    {
+        transition = "push-up";
+        await Task.Delay(1000);
+        NavManager.NavigateTo("/items");
+    }
+
+    private string? SelectedItem;
+
+    private void SelectItem(string itemName)
+    {
+        SelectedItem = itemName;
+    }
+
+    private bool IsItemsPage => NavManager.Uri.ToLower().Contains("items");
+    private int ButtonSize = 6;
+
+    private void ChangeButtonSize(int size)
+    {
+        ButtonSize = size;
+    }
+
+    private class ItemInfo
+    {
+        public string Title = "";
+        public string Description = "";
+    }
+
+    private Dictionary<string, ItemInfo> ItemData = new() {
+        { "telescope", new ItemInfo { Title = "Telescope", Description = @"The seagull-marked telescope is the most prized possession of Link's sister, Aryll. She loans it to Link as a birthday gift. Link immediately uses the Telescope to see the postman, Quill, acting strange while delivering mail. This leads to the Helmaroc King appearing at Outset Island. After a series of events, Aryll is then kidnapped and Link holds on to it for the remainder of the game."
+        } }
+    };
+}
