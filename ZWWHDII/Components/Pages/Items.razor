@@ -6,10 +6,14 @@
 
 <div class="@(Animating ? "items-page-entry" : "")">
     <div class="items-background">
-        <div class="items-main no-">
+        <div class="items-main no-select">
             <div class="inventory-limit">
                 <img src="/resources/inventory/inventory-main.png" class="inventory-base" />
                 <div class="items-grid">
+                    @if (OpenBag != null)
+                    {
+                        <div class="inventory-overlay" @onclick='() => OpenBag = null'></div>
+                    }
                     <div class="text-bg no-select" style="grid-column: 5 / 20; grid-row: 9 / 53;">
                         <img src="/resources/inventory/text-background.png" class="bg-image"/>
 
@@ -69,20 +73,154 @@
                     </div>
 
 
-                    <div class="items no-select @(SelectedItem == "spoilsBag" ? "selected" : "")" 
+                    <div class="items no-select bag @(SelectedItem == "spoilsBag" ? "selected" : "") @(OpenBag == "spoilsBag" ? "bag-open" : "")"
                     style="grid-column: 34 / 39; grid-row: 22 / 32;"
                         @onclick='() => SelectItem("spoilsBag")'>
                         <img src="/resources/inventory/items/Bag Spoils/spoilsBag.png" />
+                        <div class="bag-expand-button" @onclick:stopPropagation @onclick='() => ToggleBag("spoilsBag")'>
+                            <img src="/resources/general/arrow.png" />
+                        </div>
+
+                        @if (OpenBag == "spoilsBag")
+                        {
+                            <div class="bag-expansion-wrapper" @onclick:stopPropagation>
+                                <div class="spoils-bag-hexagon">
+                                    <img src="/resources/inventory/spoils-bag-background.png" class="hex-background" />
+                                    <div class="sub-grid">
+                                        <div class="sub-item-slot items @(SelectedItem == "joyPendant" ? "selected-sub-item" : "")"
+                                             style="top: -7%; left:23%;"
+                                            @onclick='() => SelectItem("joyPendant")'>
+                                            <img src="/resources/inventory/items/Bag Spoils/joyPendant.png" />
+                                        </div>
+
+                                        <div class="sub-item-slot items @(SelectedItem == "redChu" ? "selected-sub-item" : "")"
+                                             style="top: -7%; left:48%;"
+                                             @onclick='() => SelectItem("redChu")'>
+                                            <img src="/resources/inventory/items/Bag Spoils/redChu.png"/>
+                                        </div>
+
+                                        <div class="sub-item-slot items @(SelectedItem == "skullNecklage" ? "selected-sub-item" : "")"
+                                             style="top: -7%; left:74%;"
+                                             @onclick='() => SelectItem("skullNecklage")'>
+                                            <img src="/resources/inventory/items/Bag Spoils/skullNecklage.png" />
+                                        </div>
+
+
+                                        <div class="sub-item-slot items @(SelectedItem == "knightCrest" ? "selected-sub-item" : "")"
+                                             style="top: 35%; left:15%;"
+                                             @onclick='() => SelectItem("knightCrest")'>
+                                            <img src="/resources/inventory/items/Bag Spoils/knightCrest.png" />
+                                        </div>
+
+                                        <div class="sub-item-slot items @(SelectedItem == "bokoBabaSeed" ? "selected-sub-item" : "")"
+                                             style="top: 34%; left:43%;"
+                                             @onclick='() => SelectItem("bokoBabaSeed")'>
+                                            <img src="/resources/inventory/items/Bag Spoils/bokoBabaSeed.png" />
+                                        </div>
+
+                                        <div class="sub-item-slot items @(SelectedItem == "greenChu" ? "selected-sub-item" : "")"
+                                             style="top: 35%; left:68%;"
+                                             @onclick='() => SelectItem("greenChu")'>
+                                            <img src="/resources/inventory/items/Bag Spoils/greenChu.png" />
+                                        </div>
+
+
+                                        <div class="sub-item-slot items @(SelectedItem == "goldenFeather" ? "selected-sub-item" : "")"
+                                             style="top: 73%; left:22%;"
+                                             @onclick='() => SelectItem("goldenFeather")'>
+                                            <img src="/resources/inventory/items/Bag Spoils/goldenFeather.png" />
+                                        </div>
+
+                                        <div class="sub-item-slot items @(SelectedItem == "blueChu" ? "selected-sub-item" : "")"
+                                             style="top: 71%; left:47%;"
+                                             @onclick='() => SelectItem("blueChu")'>
+                                            <img src="/resources/inventory/items/Bag Spoils/blueChu.png" />
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                        }
                     </div>
-                    <div class="items no-select @(SelectedItem == "baitBag" ? "selected" : "")" 
+                    <div class="items no-select bag @(SelectedItem == "baitBag" ? "selected" : "") @(OpenBag == "baitBag" ? "bag-open" : "")"
                     style="grid-column: 31 / 37; grid-row: 34 / 43;"
                         @onclick='() => SelectItem("baitBag")'>
                         <img src="/resources/inventory/items/Bag Bait/baitBag.png" />
+                        <div class="bag-expand-button" @onclick:stopPropagation @onclick='() => ToggleBag("baitBag")'>
+                            <img src="/resources/general/arrow.png" />
+                        </div>
+
+                        @if (OpenBag == "baitBag")
+                        {
+                            <div class="bait-bag-hexagon" style="grid-column: 31 / 37; grid-row: 34 / 43;" @onclick:stopPropagation>
+                                <img src="/resources/inventory/bait-bag-background.png" class="hex-background" />
+                                <div class="sub-grid">
+                                    <div class="sub-item-slot items @(SelectedItem == "joyPendant" ? "selected-sub-item" : "")"
+                                         style="top: -7%; left:30%;"
+                                         @onclick='() => SelectItem("hyoiPear")'>
+                                        <img src="/resources/inventory/items/Bag Bait/hyoiPear.png"/>
+                                    </div>
+
+                                    <div class="sub-item-slot items @(SelectedItem == "bait" ? "selected-sub-item" : "")"
+                                         style="top: -7%; left:55%;"
+                                         @onclick='() => SelectItem("bait")'>
+                                        <img src="/resources/inventory/items/Bag Bait/bait.png" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
-                    <div class="items no-select @(SelectedItem == "deliveryBag" ? "selected" : "")" 
+                    <div class="items no-select bag @(SelectedItem == "deliveryBag" ? "selected" : "") @(OpenBag == "deliveryBag" ? "bag-open" : "")"
                     style="grid-column: 34 / 39; grid-row: 46 / 56;"
                         @onclick='() => SelectItem("deliveryBag")'>
                         <img src="/resources/inventory/items/Bag Delivery/deliveryBag.png" />
+                        <div class="bag-expand-button" @onclick:stopPropagation @onclick='() => ToggleBag("deliveryBag")'>
+                            <img src="/resources/general/arrow.png" />
+                        </div>
+
+                        @if (OpenBag == "deliveryBag")
+                        {
+                            <div class="delivery-bag-hexagon" style="grid-column: 31 / 37; grid-row: 34 / 43;" @onclick:stopPropagation>
+                                <img src="/resources/inventory/devilery-bag-background.png" class="hex-background" />
+                                <div class="sub-grid">
+                                    <div class="sub-item-slot items @(SelectedItem == "complimentaryID" ? "selected-sub-item" : "")"
+                                         style="top: -7%; left:23%;"
+                                         @onclick='() => SelectItem("complimentaryID")'>
+                                        <img src="/resources/inventory/items/Bag Delivery/complimentaryID.png" />
+                                    </div>
+
+                                    <div class="sub-item-slot items @(SelectedItem == "fillUpCoupon" ? "selected-sub-item" : "")"
+                                         style="top: -7%; left:48%;"
+                                         @onclick='() => SelectItem("fillUpCoupon")'>
+                                        <img src="/resources/inventory/items/Bag Delivery/fillUpCoupon.png" />
+                                    </div>
+
+                                    <div class="sub-item-slot items @(SelectedItem == "noteMom" ? "selected-sub-item" : "")"
+                                         style="top: -7%; left:74%;"
+                                         @onclick='() => SelectItem("noteMom")'>
+                                        <img src="/resources/inventory/items/Bag Delivery/noteMom.png" />
+                                    </div>
+
+
+                                    <div class="sub-item-slot items @(SelectedItem == "fatherLetter" ? "selected-sub-item" : "")"
+                                         style="top: 35%; left:15%;"
+                                         @onclick='() => SelectItem("fatherLetter")'>
+                                        <img src="/resources/inventory/items/Bag Delivery/fatherLetter.png" />
+                                    </div>
+
+                                    <div class="sub-item-slot items @(SelectedItem == "magieLetter" ? "selected-sub-item" : "")"
+                                         style="top: 34%; left:43%;"
+                                         @onclick='() => SelectItem("magieLetter")'>
+                                        <img src="/resources/inventory/items/Bag Delivery/magieLetter.png" />
+                                    </div>
+
+                                    <div class="sub-item-slot items @(SelectedItem == "moblinLetter" ? "selected-sub-item" : "")"
+                                         style="top: 35%; left:68%;"
+                                         @onclick='() => SelectItem("moblinLetter")'>
+                                        <img src="/resources/inventory/items/Bag Delivery/moblinLetter.png" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
 
 
@@ -166,6 +304,20 @@
 
 @code {
 
+    private string? OpenBag;
+
+    private void ToggleBag(string bagName)
+    {
+        if (OpenBag == bagName)
+        {
+            OpenBag = null;
+        }
+        else
+        {
+            OpenBag = bagName;
+        }
+    }
+
     private bool Animating = false;
 
     protected override async Task OnParametersSetAsync()
@@ -175,7 +327,7 @@
             Animating = true;
             Transition.Animate = false;
 
-            await Task.Delay(1000);
+            await Task.Delay(0);
 
             Animating = false;
             StateHasChanged();
@@ -232,17 +384,11 @@ There are eight types of Treasure that Link can acquire and keep within his Spoi
 • Red Chu Jelly
 • Skull Necklace" } },
 
-        // bag items
-
         { "baitBag", new ItemInfo { Title = "Bait Bag", Description = @"The Bait Bag can be bought from Beedle at his shop for 20 Rupees. The bag has a photo of a pig's nose on it. It can hold up to eight slots of bait, which can consist of All-Purpose Bait or Hyoi Pears. Without it, Beedle will not let Link buy bait.
 
 Beedel's Shop Ship can be found at various locations through the Great Sea, with it first being encountered at the start of the game, on Outset Island. It appears at many of the early locations, including Windfall Island, Dragon Roost Island, and the Forest Haven, to encourage players to purcahse the Bait Bag early on." } },
 
-        // bag items
-
         { "deliveryBag", new ItemInfo { Title = "Delivery Bag", Description = "The Delivery Bag is given to Link by Quill on Dragon Roost Island after he gets into a conversation with him and the Rito Chieftain. It can hold eight items and letters, is used more commonly to carry the Decorations during the Island Trading Sequence. After the Rito Chieftain leaves, Quill will give Link the Delivery Bag and ask him to seek out Medli. It is first used after speaking with Medli, who will give Link Father's Letter, which is a letter that the Rito Chieftain wrote and Medli asks Link to deliver it to Prince Komali" } },
-
-        // bag items
 
         { "grapplingHook", new ItemInfo { Title = "Grappling Hook", Description = @"The Grappling Hook is given to Link by Medli in Dragon Roost Cavern after Link rescues her from some Bokoblins and Moblins. The Grappling Hook is a multipurpose item. Link can throw the Grappling Hook around it and swing on to a platform. It can also be used to steal loot from enemies before they are defeated. If Link is on his boat, he can use it as part of a crane to recover treasure in the ocean." } },
         { "dekuLeaf", new ItemInfo { Title = "Deku Leaf", Description = @"The Deku Leaf's primary use is that of flotation, allowing Link to fly from platform to platform with ease. Link receives this item from the Great Deku Tree, as Link requires this item if he were to try to save Makar from the Forbidden Woods. Once Link uses it, he can jump off the platform he's standing on, and Link will float to another spot. The Magic Meter comes with it. When this runs out, one will no longer be able to use the Deku Leaf, and will simply be left with a broken leaf. One can cut down some grass to get some more magic.
@@ -294,6 +440,34 @@ After defeating the Helmaroc King at the Forsaken Fortress, head to Windfall Isl
         { "bottleWater", new ItemInfo { Title = "Bottled Water", Description = "Bottled Water can be used to make some withered plants grow. It is particularly useful when trying to access Dragon Roost Cavern. All that Link needs to do to collect some is to swipe an empty bottle near a water source." } },
         { "fairy", new ItemInfo { Title = "Fairy", Description = "Fairies can be captured in bottles to save Link when he dies in The Wind Waker. There are five Fairy Islands around the Great Sea, where both Fairies and Great Fairies reside. The Queen of Fairies also makes an appearance at Mother and Child Isles, where she gives Link the Fire and Ice arrows." } },
         { "potionRed", new ItemInfo { Title = "Red Potion", Description = "Red Potions can be held in bottles until ready to use. When used, they restore all of Link's hearts. Red Potions can be purchased from Doc Bandam at the Chu Jelly Juice Shop on Windfall Island for 20 Rupees. If Link brings 5 Red Chu Jellies to Doc Bandam, he will fill Link's bottle with Red Potion for free." } },
+
+        //spoils items
+
+        { "joyPendant", new ItemInfo { Title = "Joy Pendant", Description = "Joy Pendants are a common spoil that may drop from any Bokoblin after it is defeated. If Link gives 20 of these to Mrs. Marie on Windfall Island, she will give him the Cabana Deed. If Link gives her an additional 40 Joy Pendants, she will give Link the Hero's Charm. In The Wind Waker HD, if Link gives her an additional 40 Joy Pendants, she will give Link Treasure Chart #45." } },
+        { "redChu", new ItemInfo { Title = "Red Chu Jelly", Description = "Red Chu Jelly can be collected from a Red ChuChu after it is defeated. If Link gives 5 Red Chu Jellies to Doc Bandam on Windfall Island, he will give Link a free Red Potion." } },
+        { "skullNecklage", new ItemInfo { Title = "Skull Necklage", Description = "Skull Necklaces usually drop from Moblins after they are defeated and can occasionally be found in Treasure Chests. Giving 3 of these to Dampa on Windfall Island will allow Link to play a mini-game which can earn him 50 Rupees. If Link gives 20 of these to Maggie's Father on Windfall Island, he will give Link Treasure Chart #2." } },
+
+        { "knightCrest", new ItemInfo { Title = "Knight's Crest", Description = "Knight's Crests usually drop from Darknuts after they are defeated and can occasionally be found in Treasure Chests. If Link collects 10 of these and shows them to Orca on Outset Island, Orca will teach him the Hurricane Spin." } },
+        { "bokoBabaSeed", new ItemInfo { Title = "Boko Baba Seed", Description = "Boko Baba Seeds are spoils that may drop from a Boko Baba after it is defeated. If Link gives four of these to Hollo in Forest Haven, he will prepare a Blue Potion for Link." } },
+        { "greenChu", new ItemInfo { Title = "Green Chu Jelly", Description = "Green Chu Jelly can be collected from a Green ChuChu after it is defeated. If Link gives 15 Green Chu Jellies to Doc Bandam on Windfall Island, it will unlock the Green Potion and Doc Bandam will give Link a free sample. If Link gives an additional 5 Green Chu Jellies to Doc Bandam, he will give Link another free Green Potion." } },
+
+        { "goldenFeather", new ItemInfo { Title = "Golden Feather", Description = "Golden Feathers may drop from a Peahat, Kargarok or a Winged Mothula after they are defeated. If Link gives 20 of these to Hoskit on Dragon Roost Island, Hoskit will thank Link and give them to his girlfriend. Soon after, Link will receive a letter from Hoskit's girlfriend thanking him for the Golden Feathers. The letter will include a Piece of Heart." } },
+        { "blueChu", new ItemInfo { Title = "Blue Chu Jelly", Description = "Blue Chu Jelly can be collected from a Blue ChuChu after it is defeated. If Link gives 15 Blue Chu Jellies to Doc Bandam on Windfall Island, it will unlock the Blue Potion and Doc Bandam will give Link a free sample. If Link gives an additional 5 Blue Chu Jellies to Doc Bandam, he will give Link another free Blue Potion. Blue Chu Jellies are quite rare, as there are only 23 Blue ChuChus in the entire game." } },
+
+        //bait items
+
+        { "hyoiPear", new ItemInfo { Title = "Hyoi Pear", Description = "Hyoi Pears can be purchased from Beedle after Link receives the Spoils Bag from Niko on the way to Forsaken Fortress for the first time. If Seagulls are nearby, Link can offer a Hyoi Pear as bait for one, which will then allow him to control one until he chooses to stop or is hit by an enemy. While controlling a Seagull, Link will be able to get Rupees, Pieces of Heart and other items that would otherwise be unreachable." } },
+        { "bait", new ItemInfo { Title = "All-Purpose Bait", Description = "All-Purpose Bait can be purchased from Beedle after Link receives the Spoils Bag from Niko on the way to Forsaken Fortress for the first time. As the name implies, it has many uses. Link can use it to feed the Fishman at each island, who will in turn fill in Link's Sea Chart for that sector, or give Link the option to play a mini-game if that sector is already explored. Link can also spread some All-Purpose Bait on the ground in front of a Rat's hole and the rat will sell you Potions or even more bait." } },
+
+        //delivery items
+
+        { "complimentaryID", new ItemInfo { Title = "Complimentary ID", Description = @"The Complimentary ID is mailed to Link from Beedle after Link has purchased 30 items from him. After his 30th purchase, Link will be able to find the Complimentary ID in any Postbox. The Complimentary ID is a one-time use item. When given to Beedle, he will ""compliment"" Link for his continued patronage, which will fully recover all of his Hearts." } },
+        { "fillUpCoupon", new ItemInfo { Title = "Fill-Up Coupon", Description = "The Fill-Up Coupon is mailed to Link from Beedle after Link has purchased 60 items from him. After his 60th purchase, Link will be able to find the Fill-Up Coupon in any Postbox. The Fill-Up Coupon is a one-time use item. When given to Beedle, Link will receive a free replenishment for all consumable items, such as Bombs and Arrows, as well as a full recovery of Hearts." } },
+        { "noteMom", new ItemInfo { Title = "Note to Mom", Description = "This letter is given to Link by Baito after he notices Link's help at the mail sorting, he then asks Link to sort 25 letters for him. After sorting 25 letters, Baito then gives Link the letter to deliver to his mom. The letter says how Link helped inspire him with his job, after sometime sending it, his mom reply's to Link giving him a Piece of Heart." } },
+
+        { "fatherLetter", new ItemInfo { Title = "Father's Letter", Description = "This letter is given to Link by Medli, it is written by the Rito Chieftain to encourage his son Prince Komali to receive his scale from Valoo. The letter explains to Komali that he has to be brave and Link is here to calm Valoo down. Also this is the only letter that is in the main story line." } },
+        { "magieLetter", new ItemInfo { Title = "Magie's Letter", Description = "This letter is given to Link by Maggie in a sidequest in Windfall Island after you rescue Aryll from the Forsaken Fortress. Maggie explains to Link how she fell in love with Moe a Moblin from Forsaken Fortress and she wants Link to deliver the letter to him." } },
+        { "moblinLetter", new ItemInfo { Title = "Moblin's Letter", Description = "After sending Maggie's Letter in the Postbox, Link will comeback to find Maggie's father arguing with a Rito named Ilari. Frustrated, Ilari goes to the Cafe Bar where Link can talk to him, he will tell Link to deliver the Moblin's Letter to Maggie. When Link delivers the letter to Maggie, she will then give Link a Piece of Heart." } },
     };
 }
 

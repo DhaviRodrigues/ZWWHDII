@@ -57,6 +57,7 @@
 }
 
 .items img {
+    z-index: 0;
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -92,7 +93,7 @@
     visibility: visible;
 }
 
-.items:hover img {
+.items:hover > img {
     animation: pulse-item 1s ease-in-out;
 }
 
@@ -457,6 +458,193 @@ z-index:2
 
 .right-arrow.arrow-page-entry {
     animation: arrow-entrance-slide 1.0s ease-out;
+}
+
+.bag {
+    position: relative;
+    pointer-events: auto;
+    z-index:5;
+}
+
+.bag-expand-button {
+    position: absolute;
+    top:35%;
+    right: -5%;
+    width: 2.5vw;
+    height: 2.5vw;
+    z-index: 200;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease;
+    pointer-events: auto;
+}
+
+.bag:hover .bag-expand-button {
+    opacity: 1;
+}
+
+.bag-expand-button:hover {
+    transform: scale(1.2);
+}
+
+.bag-expand-button img {
+    width: 100%;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+}
+
+.bag-expansion-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.spoils-bag-hexagon {
+    position: absolute;
+    left: -5vw;
+    top: -5vw;
+    width: 37vw;
+    pointer-events: auto;
+}
+
+.bait-bag-hexagon {
+    position: absolute;
+    left: -0.3vw;
+    width: 42vw;
+    pointer-events: auto;
+}
+
+.delivery-bag-hexagon {
+    position: absolute;
+    left: -1vw;
+    top: -18vw;
+    width: 37vw;
+    pointer-events: auto;
+}
+
+.sub-grid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    z-index:120;
+}
+
+.sub-item-slot {
+    position: absolute;
+}
+
+.items.bag {
+    z-index: 5;
+}
+
+.items.bag:hover {
+    z-index: 101;
+}
+
+.bag > img {
+    position: relative;
+    z-index: 110;
+}
+
+.sub-items-hexagon .hex-background {
+    animation: none !important;
+    z-index: 100;
+}
+
+.sub-items-hexagon,
+.spoils-bag-hexagon,
+.bait-bag-hexagon,
+.delivery-bag-hexagon,
+.hex-background {
+    cursor: default;
+}
+
+.inventory-overlay {
+    position: fixed;
+    top: -100vh;
+    left: -100vw;
+    width: 300vw;
+    height: 300vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 80;
+    pointer-events: auto;
+}
+
+.sub-item-slot,
+.bag-expand-button,
+.bag > img {
+    cursor: pointer;
+}
+
+.items.bag.bag-open:hover::after {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.items.bag.bag-open:hover > img {
+    animation: none;
+    transform: none
+}
+
+.sub-item-slot img {
+    width: 7.5vw; 
+    height: 7.5vw;
+    
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5));
+    transition: transform 0.1s ease;
+}
+.items.bag.bag-open {
+    z-index: 101 !important; 
+}
+
+.items.bag.bag-open > img {
+    z-index: 110;
+    position: relative;
+}
+.items.bag.selected-bag-open {
+    z-index: 100;
+}
+
+.items.bag.selected-bag-open > img {
+    z-index: 110; 
+    position: relative;
+ }
+
+.spoils-bag-hexagon,
+.bait-bag-hexagon,
+.delivery-bag-hexagon {
+    z-index: 90;
+}
+
+.items:hover > img {
+    animation: pulse-item 1s ease-in-out;
+}
+
+.sub-items-hexagon img,
+.hex-background {
+    animation: none
+}
+
+.sub-item-slot.selected-sub-item::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.8) 20%, rgba(255, 215, 0, 0) 70%);
+    z-index: -1;
+    pointer-events: none;
 }
 
 @keyframes arrow-entrance-slide {
