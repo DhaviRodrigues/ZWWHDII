@@ -4,18 +4,18 @@
 <PageTitle>Zelda WWHD Interactive Inventory</PageTitle>
 
 <div class="items-background">
-    <div class="items-main no-select">
+    <div class="key-items-main no-select">
         <div class="inventory-limit">
-            <img src="/resources/inventory/inventory-main.png" class="inventory-base" />
+            <img src="/resources/inventory/key-inventory-main.png" class="inventory-base" />
             <div class="items-grid">
-                <div class="text-bg no-select" style="grid-column: 5 / 20; grid-row: 9 / 53;">
-                    <img src="/resources/inventory/text-backgroud.png" class="bg-image"/>
+                <div class="text-bg no-select" style="grid-column: 18 / 52; grid-row: 9 / 34;">
+                    <img src="/resources/inventory/text-backgroud-horizontal.png" class="bg-image"/>
 
-                    <div class="text-content" style="grid-column: 6 / 19; grid-row: 10 / 52;">
-                        @if (SelectedItem != null && ItemData.ContainsKey(SelectedItem))
+                    <div class="text-content">
+                        @if (SelectedItem != null && KeyItemData.ContainsKey(SelectedItem))
                         {
-                            <h1>@ItemData[SelectedItem].Title</h1>
-                            <p>@ItemData[SelectedItem].Description</p>
+                            <h1>@KeyItemData[SelectedItem].Title</h1>
+                            <p>@KeyItemData[SelectedItem].Description</p>
                             <footer>Text from <br/><a href="https://www.zeldadungeon.net" target="_blank">zeldadungeon.net</a></footer>
                         }
                         else
@@ -31,6 +31,92 @@
 
                 <div class="map-button no-select " style="grid-column: 14 / 22; grid-row: 1 / 7;">
                     <img src="/resources/general/map-button.png" />
+                </div>
+
+
+                <div class="items-container no-select" style="grid-column: 7 / 24; grid-row: 36 / 56;">
+                    <img src="/resources/inventory/equipments.png" />
+                </div>
+                <div class="items-container no-select" style="grid-column: 24 / 50; grid-row: 36 / 56;">
+                    <img src="/resources/inventory/triforce-and-pearl.png" />
+                </div>
+                <div class="items-container no-select " style="grid-column: 50 / 59; grid-row: 36 / 56;">
+                    <img src="/resources/inventory/heart-and-map.png" />
+                </div>
+
+
+                <div class="key-items no-select @(SelectedItem == "naryu" ? "selected" : "")"
+                     style="grid-column: 39 / 43; grid-row: 40 / 45;"
+                     @onclick='() => SelectItem("naryu")'>
+                    <img src="/resources/inventory/key-items/Pearls/naryu.png" />
+                </div>
+                <div class="key-items no-select @(SelectedItem == "din" ? "selected" : "")"
+                     style="grid-column: 37 / 41; grid-row: 47 / 52;"
+                     @onclick='() => SelectItem("din")'>
+                    <img src="/resources/inventory/key-items/Pearls/din.png"/>
+                </div>
+                <div class="key-items no-select @(SelectedItem == "farore" ? "selected" : "")"
+                     style="grid-column: 41 / 45; grid-row: 47 / 52;"
+                     @onclick='() => SelectItem("farore")'>
+                    <img src="/resources/inventory/key-items/Pearls/farore.png" />
+                </div>
+
+
+                <div class="key-items no-select @(SelectedItem == "triforce" ? "selected" : "")"
+                     style="grid-column: 29 / 37; grid-row: 40 / 52;"
+                     @onclick='() => SelectItem("triforce")'>
+                    <img src="/resources/inventory/key-items/triforce.png"/>
+                </div>
+
+
+                <div class="key-items no-select @(SelectedItem == "masterSword" ? "selected" : "")"
+                     style="grid-column: 5 / 10; grid-row: 35 / 45;"
+                     @onclick='() => SelectItem("masterSword")'>
+                    <img src="/resources/inventory/key-items/items/masterSword.png" />
+                </div>
+                <div class="key-items no-select @(SelectedItem == "mirrorShield" ? "selected" : "")"
+                     style="grid-column: 10 / 15; grid-row: 35 / 45;"
+                     @onclick='() => SelectItem("mirrorShield")'>
+                    <img src="/resources/inventory/key-items/items/mirrorShield.png" />
+                </div>
+                <div class="key-items no-select @(SelectedItem == "pirateCharm" ? "selected" : "")"
+                     style="grid-column: 16/ 21; grid-row: 35 / 45;"
+                     @onclick='() => SelectItem("pirateCharm")'>
+                    <img src="/resources/inventory/key-items/items/pirateCharm.webp" />
+                </div>
+                <div class="key-items no-select @(SelectedItem == "swiftSail" ? "selected" : "")"
+                     style="grid-column: 21 / 25; grid-row: 35 / 45;"
+                     @onclick='() => SelectItem("swiftSail")'>
+                    <img src="/resources/inventory/key-items/items/swiftSail.png" />
+                </div>
+
+
+                <div class="key-items no-select @(SelectedItem == "windWaker" ? "selected" : "")"
+                     style="grid-column: 7 / 13; grid-row: 46 / 56;"
+                     @onclick='() => SelectItem("windWaker")'>
+                    <img src="/resources/inventory/key-items/items/windWaker.png" />
+                </div>
+                <div class="key-items no-select @(SelectedItem == "powerBracelets" ? "selected" : "")"
+                     style="grid-column: 13 / 18; grid-row: 47 / 55;"
+                     @onclick='() => SelectItem("powerBracelets")'>
+                    <img src="/resources/inventory/key-items/items/powerBracelets.png   " />
+                </div>
+                <div class="key-items no-select @(SelectedItem == "heroCharm" ? "selected" : "")"
+                     style="grid-column: 19 / 24; grid-row: 47 / 55;"
+                     @onclick='() => SelectItem("heroCharm")'>
+                    <img src="/resources/inventory/key-items/items/heroCharm.png" />
+                </div>
+
+
+                <div class="key-items no-select @(SelectedItem == "heart" ? "selected" : "")"
+                     style="grid-column: 50 / 59; grid-row: 36 / 47;"
+                     @onclick='() => SelectItem("heart")'>
+                    <img src="/resources/inventory/key-items/heart.png" />
+                </div>
+                <div class="key-items no-select @(SelectedItem == "map" ? "selected" : "")"
+                     style="grid-column: 50 / 55; grid-row: 47 / 57;"
+                     @onclick='() => SelectItem("map")'>
+                    <img src="/resources/inventory/key-items/map.png" />
                 </div>
             </div>
         </div>
@@ -64,14 +150,75 @@
         ButtonSize = size;
     }
 
-    private class ItemInfo
+    private class KeyItemInfo
     {
         public string Title = "";
         public string Description = "";
     }
 
-    private Dictionary<string, ItemInfo> ItemData = new() {
-        { "telescope", new ItemInfo { Title = "Telescope", Description = @"The seagull-marked telescope is the most prized possession of Link's sister, Aryll. She loans it to Link as a birthday gift. Link immediately uses the Telescope to see the postman, Quill, acting strange while delivering mail. This leads to the Helmaroc King appearing at Outset Island. After a series of events, Aryll is then kidnapped and Link holds on to it for the remainder of the game."
+    private Dictionary<string, KeyItemInfo> KeyItemData = new() {
+        { "naryu", new KeyItemInfo { Title = "Nayru's Pearl", Description = @"Nayru's Pearl is held by Jabun, who normally resides on Greatfish Isle. However, sensing that Ganondorf was coming to find the pearl, Jabun flees to Outset Island. After acquiring the Bombs from the Niko at Windfall Island, Link must travel to Outset Island to destroy the stone wall blocking the entrance to the cave that Jabun is in. After some convincing by the King of Red Lions, Jabun gives the pearl to Link."
+        } },
+        { "din", new KeyItemInfo { Title = "Din's Pearl", Description = @"Held by Prince Komali, Din's Pearl was given to him by his deceased grandmother. Feeling upset by the angered Valoo, Komali feels comforted when holding the pearl. Although Link requires the pearl to complete his quest, Komali refuses to just hand the pearl over to a ""do nothing guy"". Link must travel through Dragon Roost Cavern to find the source of Valoo's anger before Prince Komali will reward him with Din's Pearl"
+        } },
+        { "farore", new KeyItemInfo { Title = "Farore's Pearl", Description = @"Farore's Pearl is held by the Great Deku Tree at Forest Haven. The Great Deku Tree was going to give the pearl to Link after the Koroks' annual ceremony, however Makar has fallen into the Forbidden Woods, without whom they cannot complete the ceremony. Link must travel through the Forbidden Woods to rescue Makar so that the Koroks can perform their ceremony and receive Farore's Pearl from the Great Deku Tree."
+        } },
+
+
+        { "triforce", new KeyItemInfo { Title = "Triforce", Description = @"There are eight Triforce Shards in The Wind Waker that can be found scattered across the Great Sea. The King of Red Lions first mentions them after Link completes the Tower of the Gods. He explains that when the Hero of Time left Hyrule, the Triforce of Courage split into these shards and scattered across the land. During the flood, they were buried underneath the ocean with the rest of the kingdom.
+
+After Link completes the Wind Temple, he finds the King of Red Lions speaking with a Fishman. The King tells Link that he should collect these Triforce Shards because it is the only way that they can open a gate into Hyrule beneath the sea and visit Zelda
+
+The first Triforce Shard is obtained after Link collects Triforce Chart 1 from the Islet of Steel, gets the chart deciphered by Tingle and then sails to Greatfish Isle to pull it up from the bottom of the Great Sea.
+
+The second Triforce Shard is obtained after Link enter inside of the fireplace of Private Oasis, which can be accessed by using the Grappling Hook on a hook hanging from the ceiling inside of the Cabana.
+
+The third Triforce Shard is obtained after Link collects Triforce Chart 3 from Bird's Peak Rock, gets the chart deciphered by Tingle and then sails to Stone Watcher Island to pull it up from the bottom of the Great Sea.
+
+The fourth Triforce Shard is obtained inside of the Ghost Ship. However, Link must be holding the Ghost Ship Chart in order to enter it.
+
+The fifth Triforce Shard is obtained after Link collects Triforce Chart 3 from the golden warship near Needle Rock Isle, gets the chart deciphered by Tingle and then sails to Cliff Plateau Isles to pull it up from the bottom of the Great Sea.
+
+The sixth Triforce Shard is obtained on the 30th floor of the Savage Labyrinth.
+
+The seventh Triforce Shard is obtained Revealed after defeating all of the enemies beneath the enormous rock at the top of the Stone Watcher Island
+
+The eighth Triforce Shard is obtained inside of a hole on one of the island's plateaus, accessible only by use of the Hookshot and Bombs."
+        } },
+
+
+        { "masterSword", new KeyItemInfo { Title = "Master Sword", Description = @"In The Wind Waker, the Master Sword is kept in a hidden chamber in Hyrule Castle; while the Hero of Time returned to his era and left the Master Sword in the Pedestal of Time, the version of the Sword he used remained in the adult era, and was taken into safekeeping. The chamber features stained-glass windows depicting each of the Seven Sages, to memorialize the legend of Ocarina of Time. Once again, the Master Sword maintains a seal, this time keeping time frozen in Hyrule Castle and weakening Ganondorf's magic; however, Link unknowingly draws the Master Sword from the pedestal after being instructed by the King of Red Lions; as a result, time in Hyrule Castle begins to flow again, and Ganondorf's magic is fully restored."
+        } },
+        { "mirrorShield", new KeyItemInfo { Title = "Mirror Sheild", Description = @"In The Wind Waker, the Mirror Shield is the dungeon item of the Earth Temple, located in a Treasure Chest guarded by three Stalfos. The Mirror Shield returns to its old shape in this game, featuring a blue outer layer, and a grey boss with a design featuring two birds and the Triforce emblem.
+
+The Mirror Shield replaces the Hero's Shield once obtained. It is required to solve light puzzles, by shattering stone Elephant Statues and reflecting light beams off of other mirrors, and must occasionally be paired with a second light beam via Medli's Harp to solve certain puzzles. The reflected light beams now paralyze undead enemies instead of instantly killing them, and must be used to solidify Poes and turn Dark ChuChus to stone, as well as to defeat Jalhalla."
+        } },
+        { "pirateCharm", new KeyItemInfo { Title = "Pirate's Charm", Description = @"The Pirate's Charm was crafted by the King of Hyrule, Daphnes Nohansen Hyrule, from ancient Gossip Stones, and was entrusted to his daughter, a Princess Zelda. First known as the Royal Amulet, it was used by the Royal Family of Hyrule to communicate with each other. It has passed through their lineage as an important inheritance.
+
+Tetra gives the charm to Link just before he infiltrates the Forsaken Fortress. During the Endless Night, after Link acquires the Bombs from Niko, Tetra will contact Link through the Pirate's Charm. She suggests searching for Jabun in a cave behind Outset Island, but Link will need to break down the door. Tetra gives Link a head start in the race for Jabun's Treasure, saying that the pirates are setting sail in the morning, but if Link gets their tonight, it's all his."
+        } },
+        { "swiftSail", new KeyItemInfo { Title = "Swift Sail", Description = @"The Swift Sail is an upgrade to the original Sail that is available later in the game. Just like the normal sail, it allows Link to travel across the Great Sea on the King of Red Lions. However, the Swift Sail moves the boat a lot faster and is always filled with wind, so Link does not have to play the Wind's Requiem to make the wind face where he is going. However, he cannot use it during the Boating Course game Although it is similar in appearance to the original sail, the design on it is red instead of blue.
+
+Link can hear about the Swift Sail from the Fishman at Eastern Fairy Island, who tells him it is one of the prizes available at the auction held in the Auction House on Windfall Island. Link can also learn about the Swift Sail as a rumor from Joanna and Potova on Windfall Island.
+
+It can be selected for the night's auction by Zunari after Link completes Dragon Roost Cavern. The bid starts at 100 Rupees and increases as more people bid."
+        } },
+
+
+       { "windWaker", new KeyItemInfo { Title = "Wind Waker", Description = @"The Wind Waker is an ancient conductor's baton with magical powers. With the right songs to conduct, it can control the power of the wind, change the time of day, and even create gales to warp a boat and occupants to places around the Great Sea.
+
+It is given to Link by the King of Red Lions when he first lands on the shores of Dragon Roost Island. It is used many times throughout his journey, and is one of the primary items in the game."
+        } },
+        { "powerBracelets", new KeyItemInfo { Title = "Power Bracelets", Description = @"In The Wind Waker, the Power Bracelets are found inside Fire Mountain. Once Link obtains them, they are equipped at all times. They are needed in order for Link to gain access to the Earth Temple. In this game, the Power Bracelets allow Link to lift heavy headstone shaped stones and other heavy objects, such as Link the Pig. They also allow him to lift some bombable rocks."
+        } },
+        { "heroCharm", new KeyItemInfo { Title = "Hero's Charm", Description = @"The Hero's Charm grants Link the ability to see his enemies' health level when worn. It does not take up one of the three item slots but instead is switched on and off by selecting it from the inventory. When locked-on to normal enemies, they acquire a small red bar either above or beside them. For bosses, it is a much larger bar with a skull on one end that appears at the bottom of the screen, not above the boss. This is the first item in the franchise to introduce the mechanic of visualizing enemy health levels. In previous games, a player would need to traditionally memorize the number of strikes against an enemy from a particular weapon before they were defeated."
+        } },
+
+
+        { "heart", new KeyItemInfo { Title = "Master Sword", Description = @"Pieces of Heart are recurring items in The Legend of Zelda series. Link needs to collect four in order to get a complete Heart Container. Each game has a different number of Pieces of Heart to be found, The Wind Waker contains 44 heart pieces giving Link an additional 11 Heart Containers."
+        } },
+        { "map", new KeyItemInfo { Title = "Treasure Chart", Description = @"Treasure Charts are found throughout the Great Sea on islands, within dungeons or given to Link as a reward for doing tasks. When opened, they show the location of a sunken treasure along with a part of the island where the treasure is located. When Link goes searching for the treasure, a very bright ring of light can be seen indicating where the treasure is located. These treasures are usually either 200 Rupees, a Piece of Heart or a Special Chart."
         } }
+
     };
 }

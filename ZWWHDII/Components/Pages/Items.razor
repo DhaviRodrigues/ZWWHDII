@@ -1,9 +1,10 @@
 ﻿@page "/items"
 @inject NavigationManager NavManager
+@inject Transition Transition
 
 <PageTitle>Zelda WWHD Interactive Inventory</PageTitle>
 
-<div class="items-page-entry">
+<div class="@(Animating ? "items-page-entry" : "")">
     <div class="items-background">
         <div class="items-main no-">
             <div class="inventory-limit">
@@ -12,7 +13,7 @@
                     <div class="text-bg no-select" style="grid-column: 5 / 20; grid-row: 9 / 53;">
                         <img src="/resources/inventory/text-backgroud.png" class="bg-image"/>
 
-                        <div class="text-content" style="grid-column: 6 / 19; grid-row: 10 / 52;">
+                        <div class="text-content">
                             @if (SelectedItem != null && ItemData.ContainsKey(SelectedItem))
                             {
                                 <h1>@ItemData[SelectedItem].Title</h1>
@@ -161,16 +162,30 @@
             </div>
         </div>
 </div>
-<div class="right-arrow no-select arrow-page-entry" @onclick="PushTransition"></div>
+<div class="right-arrow no-select @(Animating ? "arrow-page-entry" : "")" @onclick="KeyItemsTransition"></div>
 
 @code {
 
+    private bool Animating = false;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Transition.Animate)
+        {
+            Animating = true;
+            Transition.Animate = false;
+
+            await Task.Delay(1000);
+
+            Animating = false;
+            StateHasChanged();
+        }
+    }
+
     private string transition = "";
 
-    private async Task PushTransition()
+    private async Task KeyItemsTransition()
     {
-        transition = "push-up";
-        await Task.Delay(1000);
         NavManager.NavigateTo("/key-items");
     }
 
