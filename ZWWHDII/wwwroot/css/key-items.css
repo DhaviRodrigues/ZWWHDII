@@ -129,6 +129,9 @@ z-index:2
     visibility: visible;
 }
 
+.key-items-text-content {
+    left: 2.5%;
+}
 
 @keyframes title-items-transition {
     from {transform: translateY(100vh);}
@@ -154,7 +157,7 @@ z-index:2
 }
 
 
-.items-grid {
+/*.items-grid {
     outline: 2px dashed red;
 }
 
@@ -172,4 +175,4 @@ z-index:2
 
 .items-button,.map-button {
     outline: 1px solid black;
-}
+}*/

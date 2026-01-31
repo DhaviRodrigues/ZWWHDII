@@ -8,10 +8,10 @@
         <div class="inventory-limit">
             <img src="/resources/inventory/key-inventory-main.png" class="inventory-base" />
             <div class="items-grid">
-                <div class="text-bg no-select" style="grid-column: 18 / 52; grid-row: 9 / 34;">
-                    <img src="/resources/inventory/text-backgroud-horizontal.png" class="bg-image"/>
+                <div class="text-bg no-select" style="grid-column: 20 / 50; grid-row: 9 / 34;">
+                    <img src="/resources/inventory/text-background-horizontal.png" class="bg-image"/>
 
-                    <div class="text-content">
+                    <div class="text-content key-items-text-content">
                         @if (SelectedItem != null && KeyItemData.ContainsKey(SelectedItem))
                         {
                             <h1>@KeyItemData[SelectedItem].Title</h1>
@@ -215,7 +215,7 @@ It is given to Link by the King of Red Lions when he first lands on the shores o
         } },
 
 
-        { "heart", new KeyItemInfo { Title = "Master Sword", Description = @"Pieces of Heart are recurring items in The Legend of Zelda series. Link needs to collect four in order to get a complete Heart Container. Each game has a different number of Pieces of Heart to be found, The Wind Waker contains 44 heart pieces giving Link an additional 11 Heart Containers."
+        { "heart", new KeyItemInfo { Title = "Pieces of Heart", Description = @"Pieces of Heart are recurring items in The Legend of Zelda series. Link needs to collect four in order to get a complete Heart Container. Each game has a different number of Pieces of Heart to be found, The Wind Waker contains 44 heart pieces giving Link an additional 11 Heart Containers."
         } },
         { "map", new KeyItemInfo { Title = "Treasure Chart", Description = @"Treasure Charts are found throughout the Great Sea on islands, within dungeons or given to Link as a reward for doing tasks. When opened, they show the location of a sunken treasure along with a part of the island where the treasure is located. When Link goes searching for the treasure, a very bright ring of light can be seen indicating where the treasure is located. These treasures are usually either 200 Rupees, a Piece of Heart or a Special Chart."
         } }

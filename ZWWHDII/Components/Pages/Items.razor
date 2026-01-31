@@ -11,9 +11,9 @@
                 <img src="/resources/inventory/inventory-main.png" class="inventory-base" />
                 <div class="items-grid">
                     <div class="text-bg no-select" style="grid-column: 5 / 20; grid-row: 9 / 53;">
-                        <img src="/resources/inventory/text-backgroud.png" class="bg-image"/>
+                        <img src="/resources/inventory/text-background.png" class="bg-image"/>
 
-                        <div class="text-content">
+                        <div class="text-content items-text-content">
                             @if (SelectedItem != null && ItemData.ContainsKey(SelectedItem))
                             {
                                 <h1>@ItemData[SelectedItem].Title</h1>
