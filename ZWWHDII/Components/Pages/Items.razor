@@ -275,25 +275,38 @@
                     </div>
 
 
-                    <div class="items no-select @(SelectedItem == "bottleEmpty" ? "selected" : "")" 
+                    @{var b1 = GetCurrentItemId("bottle1");}
+                    <div class="items no-select @(SelectedItem == b1 ? "selected" : "")"
                         style="grid-column: 30 / 35; grid-row: 8 / 17;"
-                        @onclick='() => SelectItem("bottleEmpty")'>
-                        <img src="/resources/inventory/items/Bottle/bottleEmpty.webp" />
+                         @onclick='() => SelectItem(b1)'>
+                        <img src="@($"/resources/inventory/items/Bottle/{b1}.png")"/>
                     </div>
-                    <div class="items no-select @(SelectedItem == "bottleWater" ? "selected" : "")" 
+                    @{var b2 = GetCurrentItemId("bottle2");}
+                    <div class="items no-select @(SelectedItem == b2 ? "selected" : "")" 
                     style="grid-column: 37 / 42; grid-row: 8 / 17;"
-                         @onclick='() => SelectItem("bottleWater")'>
-                        <img src="/resources/inventory/items/Bottle/bottleWater.png" />
+                         @onclick='() => SelectItem(b2)'>
+                        <img src="@($"/resources/inventory/items/Bottle/{b2}.png")" />
+                        <div class="swap-button right: -7%; " @onclick:stopPropagation @onclick='() => NextItem("bottle2")'>
+                            <img src="/resources/general/arrow.png" />
+                        </div>
                     </div>
-                    <div class="items no-select @(SelectedItem == "fairy" ? "selected" : "")" 
-                    style="grid-column: 43 / 49; grid-row: 8 / 17;"
-                         @onclick='() => SelectItem("fairy")'>
-                        <img src="/resources/inventory/items/Bottle/fairy.png" />
+                    @{var b3 = GetCurrentItemId("bottle3");}
+                    <div class="items no-select @(SelectedItem == b3 ? "selected" : "")"
+                         style="grid-column: 43 / 49; grid-row: 8 / 17;"
+                         @onclick='() => SelectItem(b3)'>
+                        <img src="@($"/resources/inventory/items/Bottle/{b3}.png")" />
+                        <div class="swap-button" @onclick:stopPropagation @onclick='() => NextItem("bottle3")'>
+                            <img src="/resources/general/arrow.png" />
+                        </div>
                     </div>
-                    <div class="items no-select @(SelectedItem == "potionRed" ? "selected" : "")" 
-                    style="grid-column: 50 / 56; grid-row: 8 / 17;"
-                         @onclick='() => SelectItem("potionRed")'>
-                        <img src="/resources/inventory/items/Bottle/potionRed.png" />
+                    @{var b4 = GetCurrentItemId("bottle4");}
+                    <div class="items no-select @(SelectedItem == b4 ? "selected" : "")"
+                         style="grid-column: 50 / 56; grid-row: 8 / 17;"
+                         @onclick='() => SelectItem(b4)'>
+                        <img src="@($"/resources/inventory/items/Bottle/{b4}.png")" />
+                        <div class="swap-button" @onclick:stopPropagation @onclick='() => NextItem("bottle4")'>
+                            <img src="/resources/general/arrow.png" />
+                        </div>
                     </div>
                     </div>
                 </div>
@@ -303,6 +316,60 @@
 <div class="right-arrow no-select @(Animating ? "arrow-page-entry" : "")" @onclick="KeyItemsTransition"></div>
 
 @code {
+
+    private Dictionary<string, int> SlotIndices = new()
+    {
+        { "bottle1", 0 },
+        { "bottle2", 0 },
+        { "bottle3", 0 },
+        { "bottle4", 0 }
+    };
+
+    private Dictionary<string, List<string>> SlotVariants = new();
+
+    protected override void OnInitialized()
+    {
+        SlotVariants["bottle1"] = new List<string>
+        {
+            "bottleEmpty",
+        };
+        SlotVariants["bottle2"] = new List<string>
+        {
+            "bottleWater",
+            "bottleForestWater",
+            "forestFirefly"
+        };
+        SlotVariants["bottle3"] = new List<string>
+        {
+            "fairy",
+            "soup"
+        };
+        SlotVariants["bottle4"] = new List<string>
+        {
+            "potionRed",
+            "potionBlue",
+            "potionGreen"
+        };
+    }
+
+    private void NextItem(string slotName)
+    {
+        if (SlotVariants.ContainsKey(slotName))
+        {
+            var variants = SlotVariants[slotName];
+            var currentIndex = SlotIndices[slotName];
+            var nextIndex = (currentIndex + 1) % variants.Count;
+            SlotIndices[slotName] = nextIndex;
+            SelectItem(variants[nextIndex]);
+        }
+    }
+
+    private string GetCurrentItemId(string slotName)
+    {
+        if (!SlotIndices.ContainsKey(slotName) || !SlotVariants.ContainsKey(slotName)) return "";
+        var index = SlotIndices[slotName];
+        return SlotVariants[slotName][index];
+    }
 
     private string? OpenBag;
 
@@ -440,6 +507,12 @@ After defeating the Helmaroc King at the Forsaken Fortress, head to Windfall Isl
         { "bottleWater", new ItemInfo { Title = "Bottled Water", Description = "Bottled Water can be used to make some withered plants grow. It is particularly useful when trying to access Dragon Roost Cavern. All that Link needs to do to collect some is to swipe an empty bottle near a water source." } },
         { "fairy", new ItemInfo { Title = "Fairy", Description = "Fairies can be captured in bottles to save Link when he dies in The Wind Waker. There are five Fairy Islands around the Great Sea, where both Fairies and Great Fairies reside. The Queen of Fairies also makes an appearance at Mother and Child Isles, where she gives Link the Fire and Ice arrows." } },
         { "potionRed", new ItemInfo { Title = "Red Potion", Description = "Red Potions can be held in bottles until ready to use. When used, they restore all of Link's hearts. Red Potions can be purchased from Doc Bandam at the Chu Jelly Juice Shop on Windfall Island for 20 Rupees. If Link brings 5 Red Chu Jellies to Doc Bandam, he will fill Link's bottle with Red Potion for free." } },
+
+        { "bottleForestWater", new ItemInfo { Title = "Bottled Forest Water", Description = "Forest Water is special water that only flows within Forest Haven. It can be used to help the Withered Trees grow. Once collected, it is only good for 20 minutes before it becomes normal water. In The Wind Waker HD, that time limit is increased to 30 minutes." } },
+        { "forestFirefly", new ItemInfo { Title = "Forest Firefly", Description = "Forest Fireflies are only found inside Forest Haven. If Link brings one back to Lenzo, he will place it in Link's Picto Box, creating the Deluxe Picto Box. In The Wind Waker HD, the Forest Firefly is no longer required to get the Deluxe Picto Box. However, if Link brings a Forest Firefly to Lenzo, he will award Link with a Joy Pendant for his hard work." } },
+        { "potionBlue", new ItemInfo { Title = "Blue Potion", Description = "Blue Potions can be held in bottles until ready to use. When used, they restore all of Link's health and magic. Blue Potions must be unlocked before they can be purchased by bringing 15 Blue Chu Jellies to Doc Bandam at the Chu Jelly Juice Shop on Windfall Island. Once unlocked, Link can purchase Blue Potions for 60 Rupees. If Link brings 5 additional Blue Chu Jellies to Doc Bandam, he will fill Link's bottle with Blue Potion for free. Alternatively, Link can also collect Boko Baba Seeds from killing Boko Babas and then giving 4 of them to Hollo who will mix a Blue Potion for Link." } },
+        { "potionGreen", new ItemInfo { Title = "Green Potion", Description = "Green Potions can be held in bottles until ready to use. When used, they restore Link's entire Magic Meter. Green Potions must be unlocked before they can be purchased by bringing 15 Green Chu Jellies to Doc Bandam at the Chu Jelly Juice Shop on Windfall Island. Once unlocked, Link can purchase Green Potions for 10 Rupees. If Link brings 5 additional Green Chu Jellies to Doc Bandam, he will fill Link's bottle with Green Potion for free." } },
+        { "soup", new ItemInfo { Title = "Elixir Soup", Description = "Grandma fills one of Link's empty bottles up with Elixir Soup after he heals her with a Fairy. In fact, she fills the bottle so full that there are two helpings worth. Elixir Soup will replenish all of Link's hearts, as well as all of his magic, and even temporarily doubles his attack strength. Link can return to get unlimited free refills of Elixir Soup as long as he has an empty bottle. However, he can only have one bottle of Elixir Soup at a time." } },
 
         //spoils items
 
