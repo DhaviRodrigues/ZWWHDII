@@ -133,6 +133,10 @@ z-index:2
     left: 2.5%;
 }
 
+.key-items:hover .swap-button {
+    opacity: 1;
+}
+
 @keyframes title-items-transition {
     from {transform: translateY(100vh);}
     to {transform: translateY(0vh);}

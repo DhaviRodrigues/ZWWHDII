@@ -68,26 +68,37 @@
                     <img src="/resources/inventory/key-items/triforce.png"/>
                 </div>
 
-
-                <div class="key-items no-select @(SelectedItem == "masterSword" ? "selected" : "")"
+                @{var sword = GetCurrentItemId("sword");}
+                <div class="key-items no-select @(SelectedItem == sword ? "selected" : "")"
                      style="grid-column: 5 / 10; grid-row: 35 / 45;"
-                     @onclick='() => SelectItem("masterSword")'>
-                    <img src="/resources/inventory/key-items/items/masterSword.png" />
+                     @onclick='() => SelectItem(sword)'>
+                    <img src="@($"/resources/inventory/key-items/items/{sword}.png")" />
+                    <div class="swap-button" @onclick:stopPropagation @onclick='() => NextItem("sword")'>
+                        <img src="/resources/general/arrow.png" />
+                    </div>
                 </div>
-                <div class="key-items no-select @(SelectedItem == "mirrorShield" ? "selected" : "")"
+                @{var shield = GetCurrentItemId("shield");}
+                <div class="key-items no-select @(SelectedItem == shield ? "selected" : "")"
                      style="grid-column: 10 / 15; grid-row: 35 / 45;"
-                     @onclick='() => SelectItem("mirrorShield")'>
-                    <img src="/resources/inventory/key-items/items/mirrorShield.png" />
+                     @onclick='() => SelectItem(shield)'>
+                    <img src="@($"/resources/inventory/key-items/items/{shield}.png")" />
+                    <div class="swap-button" @onclick:stopPropagation @onclick='() => NextItem("shield")'>
+                        <img src="/resources/general/arrow.png" />
+                    </div>
                 </div>
                 <div class="key-items no-select @(SelectedItem == "pirateCharm" ? "selected" : "")"
                      style="grid-column: 16/ 21; grid-row: 35 / 45;"
                      @onclick='() => SelectItem("pirateCharm")'>
                     <img src="/resources/inventory/key-items/items/pirateCharm.webp" />
                 </div>
-                <div class="key-items no-select @(SelectedItem == "swiftSail" ? "selected" : "")"
+                @{var sail = GetCurrentItemId("sail");}
+                <div class="key-items no-select @(SelectedItem == sail ? "selected" : "")"
                      style="grid-column: 21 / 25; grid-row: 35 / 45;"
-                     @onclick='() => SelectItem("swiftSail")'>
-                    <img src="/resources/inventory/key-items/items/swiftSail.png" />
+                     @onclick='() => SelectItem(sail)'>
+                    <img src="@($"/resources/inventory/key-items/items/{sail}.png")" />
+                    <div class="swap-button" @onclick:stopPropagation @onclick='() => NextItem("sail")'>
+                        <img src="/resources/general/arrow.png" />
+                    </div>
                 </div>
 
 
@@ -125,6 +136,54 @@
 <div class="left-arrow no-select" @onclick="PushTransition"></div>
 
 @code {
+
+    private Dictionary<string, int> SlotIndices = new()
+    {
+        { "sword", 0 },
+        { "shield", 0 },
+        { "sail", 0 }
+    };
+
+    private Dictionary<string, List<string>> SlotVariants = new();
+
+    protected override void OnInitialized()
+    {
+        SlotVariants["sword"] = new List<string>
+        {
+            "masterSword",
+			"heroSword",
+
+        };
+        SlotVariants["shield"] = new List<string>
+        {
+            "mirrorShield",
+            "heroShield",
+        };
+        SlotVariants["sail"] = new List<string>
+        {
+            "swiftSail",
+            "sail"
+        };
+    }
+
+    private void NextItem(string slotName)
+    {
+        if (SlotVariants.ContainsKey(slotName))
+        {
+            var variants = SlotVariants[slotName];
+            var currentIndex = SlotIndices[slotName];
+            var nextIndex = (currentIndex + 1) % variants.Count;
+            SlotIndices[slotName] = nextIndex;
+            SelectItem(variants[nextIndex]);
+        }
+    }
+
+    private string GetCurrentItemId(string slotName)
+    {
+        if (!SlotIndices.ContainsKey(slotName) || !SlotVariants.ContainsKey(slotName)) return "";
+        var index = SlotIndices[slotName];
+        return SlotVariants[slotName][index];
+    }
 
     private string transition = "";
 
@@ -189,10 +248,20 @@ The eighth Triforce Shard is obtained inside of a hole on one of the island's pl
 
         { "masterSword", new KeyItemInfo { Title = "Master Sword", Description = @"In The Wind Waker, the Master Sword is kept in a hidden chamber in Hyrule Castle; while the Hero of Time returned to his era and left the Master Sword in the Pedestal of Time, the version of the Sword he used remained in the adult era, and was taken into safekeeping. The chamber features stained-glass windows depicting each of the Seven Sages, to memorialize the legend of Ocarina of Time. Once again, the Master Sword maintains a seal, this time keeping time frozen in Hyrule Castle and weakening Ganondorf's magic; however, Link unknowingly draws the Master Sword from the pedestal after being instructed by the King of Red Lions; as a result, time in Hyrule Castle begins to flow again, and Ganondorf's magic is fully restored."
         } },
+        { "heroSword", new KeyItemInfo { Title = "Hero's Sword", Description = @"The Hero's Sword is the first sword that Link acquires in The Wind Waker. After the Helmaroc King appears on Outset Island and drops Tetra down into the Forest of Fairies, Link will set off to investigate. He will need a sword in order to cut his way through the bushes to reach the forest. At this point, Link can speak with Orca to take part in his Sword Training. After mastering the basic skills, Link is given the Hero's Sword.
+
+With the sword in hand, Link heads into the island's forest to save Tetra. Tetra's Pirate Crew went to save her too, but Link beat them to it. After leaving the forest with Tetra and her crew, Link is greeted by Aryll, who is immediately kidnapped by the Helmaroc King. Link, Tetra and her crew travel to the Forsaken Fortress to save Aryll. They launch Link to the fortress, but he loses the Hero's Sword on impact. Managing to make it through the area without his sword, Link eventually finds the Hero's Sword and enters the prison where Aryll is held captive.
+
+After Link travels to Hyrule Castle, he will acquire the Master Sword, which replaces the Hero's Sword."
+        } },
+
         { "mirrorShield", new KeyItemInfo { Title = "Mirror Sheild", Description = @"In The Wind Waker, the Mirror Shield is the dungeon item of the Earth Temple, located in a Treasure Chest guarded by three Stalfos. The Mirror Shield returns to its old shape in this game, featuring a blue outer layer, and a grey boss with a design featuring two birds and the Triforce emblem.
 
 The Mirror Shield replaces the Hero's Shield once obtained. It is required to solve light puzzles, by shattering stone Elephant Statues and reflecting light beams off of other mirrors, and must occasionally be paired with a second light beam via Medli's Harp to solve certain puzzles. The reflected light beams now paralyze undead enemies instead of instantly killing them, and must be used to solidify Poes and turn Dark ChuChus to stone, as well as to defeat Jalhalla."
         } },
+        { "heroShield", new KeyItemInfo { Title = "Hero's Shield", Description = @"In The Wind Waker, Link receives this shield as a gift from his grandma before he embarks on a journey to rescue Aryll.[6] Tetra will not let Link aboard her ship until he has something to defend himself with, therefore it is required to progress. Later in the game, inside the Earth Temple, it is replaced when Link acquires the Mirror Shield. The Hero's Shield and the Mirror Shield have no differences defensively, aside from the Mirror Shield's ability to reflect light."
+        } },
+
         { "pirateCharm", new KeyItemInfo { Title = "Pirate's Charm", Description = @"The Pirate's Charm was crafted by the King of Hyrule, Daphnes Nohansen Hyrule, from ancient Gossip Stones, and was entrusted to his daughter, a Princess Zelda. First known as the Royal Amulet, it was used by the Royal Family of Hyrule to communicate with each other. It has passed through their lineage as an important inheritance.
 
 Tetra gives the charm to Link just before he infiltrates the Forsaken Fortress. During the Endless Night, after Link acquires the Bombs from Niko, Tetra will contact Link through the Pirate's Charm. She suggests searching for Jabun in a cave behind Outset Island, but Link will need to break down the door. Tetra gives Link a head start in the race for Jabun's Treasure, saying that the pirates are setting sail in the morning, but if Link gets their tonight, it's all his."
@@ -202,6 +271,10 @@ Tetra gives the charm to Link just before he infiltrates the Forsaken Fortress. 
 Link can hear about the Swift Sail from the Fishman at Eastern Fairy Island, who tells him it is one of the prizes available at the auction held in the Auction House on Windfall Island. Link can also learn about the Swift Sail as a rumor from Joanna and Potova on Windfall Island.
 
 It can be selected for the night's auction by Zunari after Link completes Dragon Roost Cavern. The bid starts at 100 Rupees and increases as more people bid."
+        } },
+        { "sail", new KeyItemInfo { Title = "Sail", Description = @"When Link first visits Windfall Island, he can find a shop that is owned and managed by Zunari. He recently traveled to Windfall, and his first item to sell is the Sail so that he can raise funds. When Link comes to the shop, he can purchase the Sail for 80 Rupees. With the Sail attached to the King of Red Lions, Link can travel across the Great Sea and explore locations unreachable before. If Link holds the Wind Waker and the song Wind's Requiem, he can change the directions of the wind in order to travel to different routes during his travels on the sea.
+
+In the HD remaster of The Wind Waker, the Sail can be upgraded to the Swift Sail. This Swift Sail travels much faster than the ordinary sail. Furthermore, the wind is always at this sail's back, meaning Link doesn't have to worry about changing the wind direction anymore. It can be found up for auction at the Auction House on Windfall Island. Because it is an auction, purchasing prices vary."
         } },
 
 
