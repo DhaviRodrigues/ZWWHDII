@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @font-face {
     font-family: 'RocknRollOne';
-    src: url('..resources/fonts/RocknRollOne-Regular.ttf') format('truetype');
+    src: url('resources/fonts/RocknRollOne-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -13,7 +13,7 @@ body {
 }
 
 .title-screen {
-    background-image: url('..resources/titlescreen/titleScreen.png');
+    background-image: url('resources/titlescreen/titleScreen.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -72,7 +72,7 @@ body {
     left: 0;
     width: 100%;
     height: 1.7vw;
-    background-image: url('..resources/maps/fullTriforce.png');
+    background-image: url('resources/maps/fullTriforce.png');
     background-repeat: repeat-x;
     background-size: 1.7vw;
     z-index: 5;
@@ -94,7 +94,7 @@ body {
 
 
 .down-arrow {
-    background-image: url('..resources/general/arrow.png');
+    background-image: url('resources/general/arrow.png');
     background-repeat: no-repeat;
     position: absolute;
     top: 80%;
@@ -116,7 +116,7 @@ body {
     transform: translate(-50%, -50%) rotate(-90deg);
     width: 8vw;
     height: 8vw;
-    background-image: url('..resources/general/border-selection.png');
+    background-image: url('resources/general/border-selection.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
