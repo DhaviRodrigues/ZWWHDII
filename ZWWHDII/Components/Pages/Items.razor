@@ -8,14 +8,14 @@
     <div class="items-background">
         <div class="items-main no-select">
             <div class="inventory-limit">
-                <img src="/resources/inventory/inventory-main.png" class="inventory-base" />
+                <img src="resources/inventory/inventory-main.png" class="inventory-base" />
                 <div class="items-grid">
                     @if (OpenBag != null)
                     {
                         <div class="inventory-overlay" @onclick='() => OpenBag = null'></div>
                     }
                     <div class="text-bg no-select" style="grid-column: 5 / 20; grid-row: 9 / 53;">
-                        <img src="/resources/inventory/text-background.png" class="bg-image"/>
+                        <img src="resources/inventory/text-background.png" class="bg-image"/>
 
                         <div class="text-content items-text-content">
                             @if (SelectedItem != null && ItemData.ContainsKey(SelectedItem))
@@ -34,107 +34,107 @@
 
 
                     <div class="items-button no-select" style="grid-column: 3 / 13; grid-row: 1 / @(IsItemsPage ? 7 : 6);">
-                        <img src="/resources/general/items-button-big.png" />
+                        <img src="resources/general/items-button-big.png" />
                     </div>
 
                     <div class="map-button no-select " style="grid-column: 14 / 22; grid-row: 1 / 7;">
-                        <img src="/resources/general/map-button.png" />
+                        <img src="resources/general/map-button.png" />
                     </div>
 
 
                     <div class="items-container no-select" style="grid-column: 38 / 58; grid-row: 20 / 57;">
-                        <img src="/resources/inventory/hexagon.png" />
+                        <img src="resources/inventory/hexagon.png" />
                     </div>
                     <div class="items-container no-select" style="grid-column: 29 / 43; grid-row: 20 / 57;">
-                        <img src="/resources/inventory/bags.png" />
+                        <img src="resources/inventory/bags.png" />
                     </div>
                     <div class="items-container no-select " style="grid-column: 21 / 35; grid-row: 20 / 57;">
-                        <img src="/resources/inventory/others.png" />
+                        <img src="resources/inventory/others.png" />
                     </div>
                     <div class="items-container no-select " style="grid-column: 27 / 58; grid-row: 6 / 19;">
-                        <img src="/resources/inventory/bottles.png" />
+                        <img src="resources/inventory/bottles.png" />
                     </div>
 
 
                     <div class="items no-select @(SelectedItem == "telescope" ? "selected" : "")" 
                     style="grid-column: 26 / 31; grid-row: 23 / 31;"
                         @onclick='() => SelectItem("telescope")'>
-                        <img src="/resources/inventory/items/telescope/telescope.png" />
+                        <img src="resources/inventory/items/telescope/telescope.png" />
                     </div>
                     <div class="items no-select @(SelectedItem == "tingleBottle" ? "selected" : "")" 
                     style="grid-column: 23 / 29; grid-row: 34 / 43;"
                         @onclick='() => SelectItem("tingleBottle")'>
-                        <img src="/resources/inventory/items/Tingle Bottle/tingleBottle.webp" />
+                        <img src="resources/inventory/items/Tingle Bottle/tingleBottle.webp" />
                     </div>
                     <div class="items no-select @(SelectedItem == "pictoBox" ? "selected" : "")" 
                     style="grid-column: 26 / 31; grid-row: 46 / 56;"
                         @onclick='() => SelectItem("pictoBox")'>
-                        <img src="/resources/inventory/items/Picto Box/pictoBox.webp" />
+                        <img src="resources/inventory/items/Picto Box/pictoBox.webp" />
                     </div>
 
 
                     <div class="items no-select bag @(SelectedItem == "spoilsBag" ? "selected" : "") @(OpenBag == "spoilsBag" ? "bag-open" : "")"
                     style="grid-column: 34 / 39; grid-row: 22 / 32;"
                         @onclick='() => SelectItem("spoilsBag")'>
-                        <img src="/resources/inventory/items/Bag Spoils/spoilsBag.png" />
+                        <img src="resources/inventory/items/Bag Spoils/spoilsBag.png" />
                         <div class="bag-expand-button" @onclick:stopPropagation @onclick='() => ToggleBag("spoilsBag")'>
-                            <img src="/resources/general/arrow.png" />
+                            <img src="resources/general/arrow.png" />
                         </div>
 
                         @if (OpenBag == "spoilsBag")
                         {
                             <div class="bag-expansion-wrapper" @onclick:stopPropagation>
                                 <div class="spoils-bag-hexagon">
-                                    <img src="/resources/inventory/spoils-bag-background.png" class="hex-background" />
+                                    <img src="resources/inventory/spoils-bag-background.png" class="hex-background" />
                                     <div class="sub-grid">
                                         <div class="sub-item-slot items @(SelectedItem == "joyPendant" ? "selected-sub-item" : "")"
                                              style="top: -7%; left:23%;"
                                             @onclick='() => SelectItem("joyPendant")'>
-                                            <img src="/resources/inventory/items/Bag Spoils/joyPendant.png" />
+                                            <img src="resources/inventory/items/Bag Spoils/joyPendant.png" />
                                         </div>
 
                                         <div class="sub-item-slot items @(SelectedItem == "redChu" ? "selected-sub-item" : "")"
                                              style="top: -7%; left:48%;"
                                              @onclick='() => SelectItem("redChu")'>
-                                            <img src="/resources/inventory/items/Bag Spoils/redChu.png"/>
+                                            <img src="resources/inventory/items/Bag Spoils/redChu.png"/>
                                         </div>
 
                                         <div class="sub-item-slot items @(SelectedItem == "skullNecklage" ? "selected-sub-item" : "")"
                                              style="top: -7%; left:74%;"
                                              @onclick='() => SelectItem("skullNecklage")'>
-                                            <img src="/resources/inventory/items/Bag Spoils/skullNecklage.png" />
+                                            <img src="resources/inventory/items/Bag Spoils/skullNecklage.png" />
                                         </div>
 
 
                                         <div class="sub-item-slot items @(SelectedItem == "knightCrest" ? "selected-sub-item" : "")"
                                              style="top: 35%; left:15%;"
                                              @onclick='() => SelectItem("knightCrest")'>
-                                            <img src="/resources/inventory/items/Bag Spoils/knightCrest.png" />
+                                            <img src="resources/inventory/items/Bag Spoils/knightCrest.png" />
                                         </div>
 
                                         <div class="sub-item-slot items @(SelectedItem == "bokoBabaSeed" ? "selected-sub-item" : "")"
                                              style="top: 34%; left:43%;"
                                              @onclick='() => SelectItem("bokoBabaSeed")'>
-                                            <img src="/resources/inventory/items/Bag Spoils/bokoBabaSeed.png" />
+                                            <img src="resources/inventory/items/Bag Spoils/bokoBabaSeed.png" />
                                         </div>
 
                                         <div class="sub-item-slot items @(SelectedItem == "greenChu" ? "selected-sub-item" : "")"
                                              style="top: 35%; left:68%;"
                                              @onclick='() => SelectItem("greenChu")'>
-                                            <img src="/resources/inventory/items/Bag Spoils/greenChu.png" />
+                                            <img src="resources/inventory/items/Bag Spoils/greenChu.png" />
                                         </div>
 
 
                                         <div class="sub-item-slot items @(SelectedItem == "goldenFeather" ? "selected-sub-item" : "")"
                                              style="top: 73%; left:22%;"
                                              @onclick='() => SelectItem("goldenFeather")'>
-                                            <img src="/resources/inventory/items/Bag Spoils/goldenFeather.png" />
+                                            <img src="resources/inventory/items/Bag Spoils/goldenFeather.png" />
                                         </div>
 
                                         <div class="sub-item-slot items @(SelectedItem == "blueChu" ? "selected-sub-item" : "")"
                                              style="top: 71%; left:47%;"
                                              @onclick='() => SelectItem("blueChu")'>
-                                            <img src="/resources/inventory/items/Bag Spoils/blueChu.png" />
+                                            <img src="resources/inventory/items/Bag Spoils/blueChu.png" />
                                         </div>
                                         </div>
                                         </div>
@@ -144,26 +144,26 @@
                     <div class="items no-select bag @(SelectedItem == "baitBag" ? "selected" : "") @(OpenBag == "baitBag" ? "bag-open" : "")"
                     style="grid-column: 31 / 37; grid-row: 34 / 43;"
                         @onclick='() => SelectItem("baitBag")'>
-                        <img src="/resources/inventory/items/Bag Bait/baitBag.png" />
+                        <img src="resources/inventory/items/Bag Bait/baitBag.png" />
                         <div class="bag-expand-button" @onclick:stopPropagation @onclick='() => ToggleBag("baitBag")'>
-                            <img src="/resources/general/arrow.png" />
+                            <img src="resources/general/arrow.png" />
                         </div>
 
                         @if (OpenBag == "baitBag")
                         {
                             <div class="bait-bag-hexagon" style="grid-column: 31 / 37; grid-row: 34 / 43;" @onclick:stopPropagation>
-                                <img src="/resources/inventory/bait-bag-background.png" class="hex-background" />
+                                <img src="resources/inventory/bait-bag-background.png" class="hex-background" />
                                 <div class="sub-grid">
                                     <div class="sub-item-slot items @(SelectedItem == "joyPendant" ? "selected-sub-item" : "")"
                                          style="top: -7%; left:30%;"
                                          @onclick='() => SelectItem("hyoiPear")'>
-                                        <img src="/resources/inventory/items/Bag Bait/hyoiPear.png"/>
+                                        <img src="resources/inventory/items/Bag Bait/hyoiPear.png"/>
                                     </div>
 
                                     <div class="sub-item-slot items @(SelectedItem == "bait" ? "selected-sub-item" : "")"
                                          style="top: -7%; left:55%;"
                                          @onclick='() => SelectItem("bait")'>
-                                        <img src="/resources/inventory/items/Bag Bait/bait.png" />
+                                        <img src="resources/inventory/items/Bag Bait/bait.png" />
                                     </div>
                                 </div>
                             </div>
@@ -172,51 +172,51 @@
                     <div class="items no-select bag @(SelectedItem == "deliveryBag" ? "selected" : "") @(OpenBag == "deliveryBag" ? "bag-open" : "")"
                     style="grid-column: 34 / 39; grid-row: 46 / 56;"
                         @onclick='() => SelectItem("deliveryBag")'>
-                        <img src="/resources/inventory/items/Bag Delivery/deliveryBag.png" />
+                        <img src="resources/inventory/items/Bag Delivery/deliveryBag.png" />
                         <div class="bag-expand-button" @onclick:stopPropagation @onclick='() => ToggleBag("deliveryBag")'>
-                            <img src="/resources/general/arrow.png" />
+                            <img src="resources/general/arrow.png" />
                         </div>
 
                         @if (OpenBag == "deliveryBag")
                         {
                             <div class="delivery-bag-hexagon" style="grid-column: 31 / 37; grid-row: 34 / 43;" @onclick:stopPropagation>
-                                <img src="/resources/inventory/devilery-bag-background.png" class="hex-background" />
+                                <img src="resources/inventory/devilery-bag-background.png" class="hex-background" />
                                 <div class="sub-grid">
                                     <div class="sub-item-slot items @(SelectedItem == "complimentaryID" ? "selected-sub-item" : "")"
                                          style="top: -7%; left:23%;"
                                          @onclick='() => SelectItem("complimentaryID")'>
-                                        <img src="/resources/inventory/items/Bag Delivery/complimentaryID.png" />
+                                        <img src="resources/inventory/items/Bag Delivery/complimentaryID.png" />
                                     </div>
 
                                     <div class="sub-item-slot items @(SelectedItem == "fillUpCoupon" ? "selected-sub-item" : "")"
                                          style="top: -7%; left:48%;"
                                          @onclick='() => SelectItem("fillUpCoupon")'>
-                                        <img src="/resources/inventory/items/Bag Delivery/fillUpCoupon.png" />
+                                        <img src="resources/inventory/items/Bag Delivery/fillUpCoupon.png" />
                                     </div>
 
                                     <div class="sub-item-slot items @(SelectedItem == "noteMom" ? "selected-sub-item" : "")"
                                          style="top: -7%; left:74%;"
                                          @onclick='() => SelectItem("noteMom")'>
-                                        <img src="/resources/inventory/items/Bag Delivery/noteMom.png" />
+                                        <img src="resources/inventory/items/Bag Delivery/noteMom.png" />
                                     </div>
 
 
                                     <div class="sub-item-slot items @(SelectedItem == "fatherLetter" ? "selected-sub-item" : "")"
                                          style="top: 35%; left:15%;"
                                          @onclick='() => SelectItem("fatherLetter")'>
-                                        <img src="/resources/inventory/items/Bag Delivery/fatherLetter.png" />
+                                        <img src="resources/inventory/items/Bag Delivery/fatherLetter.png" />
                                     </div>
 
                                     <div class="sub-item-slot items @(SelectedItem == "magieLetter" ? "selected-sub-item" : "")"
                                          style="top: 34%; left:43%;"
                                          @onclick='() => SelectItem("magieLetter")'>
-                                        <img src="/resources/inventory/items/Bag Delivery/magieLetter.png" />
+                                        <img src="resources/inventory/items/Bag Delivery/magieLetter.png" />
                                     </div>
 
                                     <div class="sub-item-slot items @(SelectedItem == "moblinLetter" ? "selected-sub-item" : "")"
                                          style="top: 35%; left:68%;"
                                          @onclick='() => SelectItem("moblinLetter")'>
-                                        <img src="/resources/inventory/items/Bag Delivery/moblinLetter.png" />
+                                        <img src="resources/inventory/items/Bag Delivery/moblinLetter.png" />
                                     </div>
                                 </div>
                             </div>
@@ -227,51 +227,51 @@
                     <div class="items no-select @(SelectedItem == "grapplingHook" ? "selected" : "")" 
                     style="grid-column: 41 / 45; grid-row: 22 / 32;"
                         @onclick='() => SelectItem("grapplingHook")'>
-                        <img src="/resources/inventory/items/Grappling Hook/grapplingHook.png" />
+                        <img src="resources/inventory/items/Grappling Hook/grapplingHook.png" />
                     </div>
                     <div class="items no-select @(SelectedItem == "dekuLeaf" ? "selected" : "")" 
                     style="grid-column: 46 / 50; grid-row: 22 / 32;"
                          @onclick='() => SelectItem("dekuLeaf")'>
-                        <img src="/resources/inventory/items/Deku Leaf/dekuLeaf.png" />
+                        <img src="resources/inventory/items/Deku Leaf/dekuLeaf.png" />
                     </div>
                     <div class="items no-select @(SelectedItem == "bomb" ? "selected" : "")" 
                     style="grid-column: 51 / 55; grid-row: 22 / 32;"
                          @onclick='() => SelectItem("bomb")'>
-                        <img src="/resources/inventory/items/Bomb Bags/bomb.webp" />
+                        <img src="resources/inventory/items/Bomb Bags/bomb.webp" />
                     </div>
 
 
                     <div class="items no-select @(SelectedItem == "boomerang" ? "selected" : "")" 
                     style="grid-column: 38 / 44; grid-row: 34 / 44;"
                          @onclick='() => SelectItem("boomerang")'>
-                        <img src="/resources/inventory/items/Boomerang/boomerang.png" />
+                        <img src="resources/inventory/items/Boomerang/boomerang.png" />
                     </div>
                     <div class="items no-select @(SelectedItem == "bow" ? "selected" : "")" 
                     style="grid-column: 44 / 49; grid-row: 34 / 44;"
                          @onclick='() => SelectItem("bow")'>
-                        <img src="/resources/inventory/items/Bow/bow.png" />
+                        <img src="resources/inventory/items/Bow/bow.png" />
                     </div>
                     <div class="items no-select @(SelectedItem == "hookshot" ? "selected" : "")" 
                     style="grid-column: 49 / 55; grid-row: 34 / 44;"
                          @onclick='() => SelectItem("hookshot")'>
-                        <img src="/resources/inventory/items/Hookshot/hookshot.png" />
+                        <img src="resources/inventory/items/Hookshot/hookshot.png" />
                     </div>
 
 
                     <div class="items no-select @(SelectedItem == "skullHammer" ? "selected" : "")" 
                     style="grid-column: 41 / 46; grid-row: 46 / 56;"
                          @onclick='() => SelectItem("skullHammer")'>
-                        <img src="/resources/inventory/items/Skull Hammer/skullHammer.png" />
+                        <img src="resources/inventory/items/Skull Hammer/skullHammer.png" />
                     </div>
                     <div class="items no-select @(SelectedItem == "ironBoots" ? "selected" : "")" 
                     style="grid-column: 46 / 51; grid-row: 46 / 56;"
                          @onclick='() => SelectItem("ironBoots")'>
-                        <img src="/resources/inventory/items/Iron Boots/ironBoots.png" />
+                        <img src="resources/inventory/items/Iron Boots/ironBoots.png" />
                     </div>
                     <div class="items no-select @(SelectedItem == "magicArmor" ? "selected" : "")" 
                     style="grid-column: 51 / 56; grid-row: 46 / 56;"
                          @onclick='() => SelectItem("magicArmor")'>
-                        <img src="/resources/inventory/items/Magic Armor/magicAmor.png" />
+                        <img src="resources/inventory/items/Magic Armor/magicAmor.png" />
                     </div>
 
 
@@ -279,33 +279,33 @@
                     <div class="items no-select @(SelectedItem == b1 ? "selected" : "")"
                         style="grid-column: 30 / 35; grid-row: 8 / 17;"
                          @onclick='() => SelectItem(b1)'>
-                        <img src="@($"/resources/inventory/items/Bottle/{b1}.png")"/>
+                        <img src="@($"resources/inventory/items/Bottle/{b1}.png")"/>
                     </div>
                     @{var b2 = GetCurrentItemId("bottle2");}
                     <div class="items no-select @(SelectedItem == b2 ? "selected" : "")" 
                     style="grid-column: 37 / 42; grid-row: 8 / 17;"
                          @onclick='() => SelectItem(b2)'>
-                        <img src="@($"/resources/inventory/items/Bottle/{b2}.png")" />
+                        <img src="@($"resources/inventory/items/Bottle/{b2}.png")" />
                         <div class="swap-button right: -7%; " @onclick:stopPropagation @onclick='() => NextItem("bottle2")'>
-                            <img src="/resources/general/arrow.png" />
+                            <img src="resources/general/arrow.png" />
                         </div>
                     </div>
                     @{var b3 = GetCurrentItemId("bottle3");}
                     <div class="items no-select @(SelectedItem == b3 ? "selected" : "")"
                          style="grid-column: 43 / 49; grid-row: 8 / 17;"
                          @onclick='() => SelectItem(b3)'>
-                        <img src="@($"/resources/inventory/items/Bottle/{b3}.png")" />
+                        <img src="@($"resources/inventory/items/Bottle/{b3}.png")" />
                         <div class="swap-button" @onclick:stopPropagation @onclick='() => NextItem("bottle3")'>
-                            <img src="/resources/general/arrow.png" />
+                            <img src="resources/general/arrow.png" />
                         </div>
                     </div>
                     @{var b4 = GetCurrentItemId("bottle4");}
                     <div class="items no-select @(SelectedItem == b4 ? "selected" : "")"
                          style="grid-column: 50 / 56; grid-row: 8 / 17;"
                          @onclick='() => SelectItem(b4)'>
-                        <img src="@($"/resources/inventory/items/Bottle/{b4}.png")" />
+                        <img src="@($"resources/inventory/items/Bottle/{b4}.png")" />
                         <div class="swap-button" @onclick:stopPropagation @onclick='() => NextItem("bottle4")'>
-                            <img src="/resources/general/arrow.png" />
+                            <img src="resources/general/arrow.png" />
                         </div>
                     </div>
                     </div>

@@ -6,10 +6,10 @@
 <div class="items-background">
     <div class="key-items-main no-select">
         <div class="inventory-limit">
-            <img src="/resources/inventory/key-inventory-main.png" class="inventory-base" />
+            <img src="resources/inventory/key-inventory-main.png" class="inventory-base" />
             <div class="items-grid">
                 <div class="text-bg no-select" style="grid-column: 20 / 50; grid-row: 9 / 34;">
-                    <img src="/resources/inventory/text-background-horizontal.png" class="bg-image"/>
+                    <img src="resources/inventory/text-background-horizontal.png" class="bg-image"/>
 
                     <div class="text-content key-items-text-content">
                         @if (SelectedItem != null && KeyItemData.ContainsKey(SelectedItem))
@@ -26,78 +26,78 @@
                 </div>
 
                 <div class="items-button no-select" style="grid-column: 3 / 13; grid-row: 1 / @(IsItemsPage ? 7 : 6);">
-                    <img src="/resources/general/items-button-big.png" />
+                    <img src="resources/general/items-button-big.png" />
                 </div>
 
                 <div class="map-button no-select " style="grid-column: 14 / 22; grid-row: 1 / 7;">
-                    <img src="/resources/general/map-button.png" />
+                    <img src="resources/general/map-button.png" />
                 </div>
 
 
                 <div class="items-container no-select" style="grid-column: 7 / 24; grid-row: 36 / 56;">
-                    <img src="/resources/inventory/equipments.png" />
+                    <img src="resources/inventory/equipments.png" />
                 </div>
                 <div class="items-container no-select" style="grid-column: 24 / 50; grid-row: 36 / 56;">
-                    <img src="/resources/inventory/triforce-and-pearl.png" />
+                    <img src="resources/inventory/triforce-and-pearl.png" />
                 </div>
                 <div class="items-container no-select " style="grid-column: 50 / 59; grid-row: 36 / 56;">
-                    <img src="/resources/inventory/heart-and-map.png" />
+                    <img src="resources/inventory/heart-and-map.png" />
                 </div>
 
 
                 <div class="key-items no-select @(SelectedItem == "naryu" ? "selected" : "")"
                      style="grid-column: 39 / 43; grid-row: 40 / 45;"
                      @onclick='() => SelectItem("naryu")'>
-                    <img src="/resources/inventory/key-items/Pearls/naryu.png" />
+                    <img src="resources/inventory/key-items/Pearls/naryu.png" />
                 </div>
                 <div class="key-items no-select @(SelectedItem == "din" ? "selected" : "")"
                      style="grid-column: 37 / 41; grid-row: 47 / 52;"
                      @onclick='() => SelectItem("din")'>
-                    <img src="/resources/inventory/key-items/Pearls/din.png"/>
+                    <img src="resources/inventory/key-items/Pearls/din.png"/>
                 </div>
                 <div class="key-items no-select @(SelectedItem == "farore" ? "selected" : "")"
                      style="grid-column: 41 / 45; grid-row: 47 / 52;"
                      @onclick='() => SelectItem("farore")'>
-                    <img src="/resources/inventory/key-items/Pearls/farore.png" />
+                    <img src="resources/inventory/key-items/Pearls/farore.png" />
                 </div>
 
 
                 <div class="key-items no-select @(SelectedItem == "triforce" ? "selected" : "")"
                      style="grid-column: 29 / 37; grid-row: 40 / 52;"
                      @onclick='() => SelectItem("triforce")'>
-                    <img src="/resources/inventory/key-items/triforce.png"/>
+                    <img src="resources/inventory/key-items/triforce.png"/>
                 </div>
 
                 @{var sword = GetCurrentItemId("sword");}
                 <div class="key-items no-select @(SelectedItem == sword ? "selected" : "")"
                      style="grid-column: 5 / 10; grid-row: 35 / 45;"
                      @onclick='() => SelectItem(sword)'>
-                    <img src="@($"/resources/inventory/key-items/items/{sword}.png")" />
+                    <img src="@($"resources/inventory/key-items/items/{sword}.png")" />
                     <div class="swap-button" @onclick:stopPropagation @onclick='() => NextItem("sword")'>
-                        <img src="/resources/general/arrow.png" />
+                        <img src="resources/general/arrow.png" />
                     </div>
                 </div>
                 @{var shield = GetCurrentItemId("shield");}
                 <div class="key-items no-select @(SelectedItem == shield ? "selected" : "")"
                      style="grid-column: 10 / 15; grid-row: 35 / 45;"
                      @onclick='() => SelectItem(shield)'>
-                    <img src="@($"/resources/inventory/key-items/items/{shield}.png")" />
+                    <img src="@($"resources/inventory/key-items/items/{shield}.png")" />
                     <div class="swap-button" @onclick:stopPropagation @onclick='() => NextItem("shield")'>
-                        <img src="/resources/general/arrow.png" />
+                        <img src="resources/general/arrow.png" />
                     </div>
                 </div>
                 <div class="key-items no-select @(SelectedItem == "pirateCharm" ? "selected" : "")"
                      style="grid-column: 16/ 21; grid-row: 35 / 45;"
                      @onclick='() => SelectItem("pirateCharm")'>
-                    <img src="/resources/inventory/key-items/items/pirateCharm.webp" />
+                    <img src="resources/inventory/key-items/items/pirateCharm.webp" />
                 </div>
                 @{var sail = GetCurrentItemId("sail");}
                 <div class="key-items no-select @(SelectedItem == sail ? "selected" : "")"
                      style="grid-column: 21 / 25; grid-row: 35 / 45;"
                      @onclick='() => SelectItem(sail)'>
-                    <img src="@($"/resources/inventory/key-items/items/{sail}.png")" />
+                    <img src="@($"resources/inventory/key-items/items/{sail}.png")" />
                     <div class="swap-button" @onclick:stopPropagation @onclick='() => NextItem("sail")'>
-                        <img src="/resources/general/arrow.png" />
+                        <img src="resources/general/arrow.png" />
                     </div>
                 </div>
 
@@ -105,29 +105,29 @@
                 <div class="key-items no-select @(SelectedItem == "windWaker" ? "selected" : "")"
                      style="grid-column: 7 / 13; grid-row: 46 / 56;"
                      @onclick='() => SelectItem("windWaker")'>
-                    <img src="/resources/inventory/key-items/items/windWaker.png" />
+                    <img src="resources/inventory/key-items/items/windWaker.png" />
                 </div>
                 <div class="key-items no-select @(SelectedItem == "powerBracelets" ? "selected" : "")"
                      style="grid-column: 13 / 18; grid-row: 47 / 55;"
                      @onclick='() => SelectItem("powerBracelets")'>
-                    <img src="/resources/inventory/key-items/items/powerBracelets.png   " />
+                    <img src="resources/inventory/key-items/items/powerBracelets.png   " />
                 </div>
                 <div class="key-items no-select @(SelectedItem == "heroCharm" ? "selected" : "")"
                      style="grid-column: 19 / 24; grid-row: 47 / 55;"
                      @onclick='() => SelectItem("heroCharm")'>
-                    <img src="/resources/inventory/key-items/items/heroCharm.png" />
+                    <img src="resources/inventory/key-items/items/heroCharm.png" />
                 </div>
 
 
                 <div class="key-items no-select @(SelectedItem == "heart" ? "selected" : "")"
                      style="grid-column: 50 / 59; grid-row: 36 / 47;"
                      @onclick='() => SelectItem("heart")'>
-                    <img src="/resources/inventory/key-items/heart.png" />
+                    <img src="resources/inventory/key-items/heart.png" />
                 </div>
                 <div class="key-items no-select @(SelectedItem == "map" ? "selected" : "")"
                      style="grid-column: 50 / 55; grid-row: 47 / 57;"
                      @onclick='() => SelectItem("map")'>
-                    <img src="/resources/inventory/key-items/map.png" />
+                    <img src="resources/inventory/key-items/map.png" />
                 </div>
             </div>
         </div>
