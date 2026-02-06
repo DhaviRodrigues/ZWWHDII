@@ -72,7 +72,7 @@
                 <div class="key-items no-select @(SelectedItem == sword ? "selected" : "")"
                      style="grid-column: 5 / 10; grid-row: 35 / 45;"
                      @onclick='() => SelectItem(sword)'>
-                    <img src="@($"resources/inventory/key-items/items/{sword}.png")" />
+                    <img src="@($"resources/inventory/key-items/Items/{sword}.png")" />
                     <div class="swap-button" @onclick:stopPropagation @onclick='() => NextItem("sword")'>
                         <img src="resources/general/arrow.png" />
                     </div>
@@ -81,7 +81,7 @@
                 <div class="key-items no-select @(SelectedItem == shield ? "selected" : "")"
                      style="grid-column: 10 / 15; grid-row: 35 / 45;"
                      @onclick='() => SelectItem(shield)'>
-                    <img src="@($"resources/inventory/key-items/items/{shield}.png")" />
+                    <img src="@($"resources/inventory/key-items/Items/{shield}.png")" />
                     <div class="swap-button" @onclick:stopPropagation @onclick='() => NextItem("shield")'>
                         <img src="resources/general/arrow.png" />
                     </div>
@@ -95,7 +95,7 @@
                 <div class="key-items no-select @(SelectedItem == sail ? "selected" : "")"
                      style="grid-column: 21 / 25; grid-row: 35 / 45;"
                      @onclick='() => SelectItem(sail)'>
-                    <img src="@($"resources/inventory/key-items/items/{sail}.png")" />
+                    <img src="@($"resources/inventory/key-items/Items/{sail}.png")" />
                     <div class="swap-button" @onclick:stopPropagation @onclick='() => NextItem("sail")'>
                         <img src="resources/general/arrow.png" />
                     </div>
