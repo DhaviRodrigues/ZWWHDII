@@ -281,14 +281,11 @@ z-index:2
     text-align: center;
     -webkit-text-stroke: 0.35vw black;
     font-size: 1.8vw;
-    text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
 }
 
 .text-content p {
     text-align: justify;
     font-size: 1.2vw;
-    white-space: pre-wrap;
-    text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
     -webkit-text-stroke: 0.25vw black;
 }
 
