@@ -27,6 +27,9 @@ jobs:
     - name: Change base-tag
       run: sed -i 's|<base href="/" />|<base href="/ZWWHDII/" />|g' out/wwwroot/index.html
 
+    - name: Create 404 copy
+      run: cp out/wwwroot/index.html out/wwwroot/404.html
+
     - name: Add .nojekyll
       run: touch out/wwwroot/.nojekyll
 
